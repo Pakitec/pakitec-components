@@ -16,7 +16,7 @@ class _CompassIndicatorState extends State<CompassIndicator> {
         height: 30,
         width: 30,
         padding: const EdgeInsets.only(left: 5.0),
-        child: const RiveAnimation.asset('assets/animations/compass.riv', alignment: Alignment.center,)
+        child: const RiveAnimation.asset('assets/animations/compass.riv', alignment: Alignment.center)
     );
   }
 }

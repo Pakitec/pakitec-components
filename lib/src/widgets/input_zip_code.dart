@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:pakitec_components/pakitec_components.dart';
 import 'package:pakitec_components/src/styles/main_style.dart';
+import '../../pakitec_components.dart';
 import '../services/zip_service.dart';
 import 'compass_indicator.dart';
-import 'dialogs.dart';
-
 
 class PakiInputZipCode extends StatefulWidget {
   final String name;
