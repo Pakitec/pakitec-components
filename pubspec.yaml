@@ -1,6 +1,6 @@
 name: pakitec_components
 description: A new Flutter project.
-version: 0.0.3
+version: 0.0.4
 homepage:
 
 environment:
@@ -10,6 +10,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  dropdown_search: ^2.0.1
 
 dev_dependencies:
   flutter_test:
