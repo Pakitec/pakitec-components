@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:pakitec_components/pakitec_components.dart';
 import 'package:pakitec_components/src/styles/main_style.dart';
-import 'package:pakitec_components/src/widgets/vorthex_dialogs.dart';
 import '../services/zip_service.dart';
 import 'compass_indicator.dart';
+import 'dialogs.dart';
 
 
 class PakiInputZipCode extends StatefulWidget {
