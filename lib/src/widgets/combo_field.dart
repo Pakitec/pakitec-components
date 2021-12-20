@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../../pakitec_components.dart';
 
-class ComboField extends StatefulWidget {
+class PakiComboField extends StatefulWidget {
   final String label;
   final List<String> list;
   final bool? showSearchBox;
@@ -11,13 +11,13 @@ class ComboField extends StatefulWidget {
   final bool? removeHorizontalDiv;
   final void Function(String? value) onSelect;
 
-  const ComboField({Key? key, required this.label, required this.list, required this.onSelect, this.showSearchBox, this.selectedValue, this.removeHorizontalDiv}) : super(key: key);
+  const PakiComboField({Key? key, required this.label, required this.list, required this.onSelect, this.showSearchBox, this.selectedValue, this.removeHorizontalDiv}) : super(key: key);
 
   @override
-  _ComboFieldState createState() => _ComboFieldState();
+  _PakiComboFieldState createState() => _PakiComboFieldState();
 }
 
-class _ComboFieldState extends State<ComboField> {
+class _PakiComboFieldState extends State<PakiComboField> {
   late bool showSearchBox;
   bool removeHorizontalDiv = false;
 

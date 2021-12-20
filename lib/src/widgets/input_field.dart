@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pakitec_components/src/styles/main_style.dart';
 import '../../pakitec_components.dart';
 
 class PakiInputField extends StatefulWidget {
@@ -17,7 +18,6 @@ class PakiInputField extends StatefulWidget {
   final IconData? prefixIcon;
   final Iterable<String>? autoFillHints;
   final bool? removeHorizontalDiv;
-  final Color? textColor;
 
   const PakiInputField(
       {Key? key, this.name,
@@ -34,8 +34,7 @@ class PakiInputField extends StatefulWidget {
       this.hint,
       this.prefixIcon,
       this.autoFillHints,
-      this.removeHorizontalDiv,
-      this.textColor}) : super(key: key);
+      this.removeHorizontalDiv}) : super(key: key);
 
   @override
   _PakiInputFieldState createState() => _PakiInputFieldState();
@@ -49,7 +48,6 @@ class _PakiInputFieldState extends State<PakiInputField> {
   int maxLines = 1;
   TextAlign textAlign = TextAlign.center;
   bool removeHorizontalDiv = false;
-  Color textColor = Colors.white;
 
   @override
   void initState() {
@@ -61,7 +59,6 @@ class _PakiInputFieldState extends State<PakiInputField> {
     if (widget.maxLines != null) maxLines = widget.maxLines!;
     if (widget.textAlign != null) textAlign = widget.textAlign!;
     if (widget.removeHorizontalDiv != null) removeHorizontalDiv = widget.removeHorizontalDiv!;
-    if (widget.textColor != null) textColor = widget.textColor!;
   }
 
   @override
@@ -91,7 +88,7 @@ class _PakiInputFieldState extends State<PakiInputField> {
         keyboardType: keyboardType,
         textAlign: textAlign,
         obscureText: obscureText,
-        style: TextStyle(color: textColor),
+        style: const TextStyle(color: primaryColor),
         decoration: InputDecoration(
             labelText: widget.name,
             hintText: widget.hint,
