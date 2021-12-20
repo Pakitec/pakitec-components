@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:pakitec_components/pakitec_components.dart';
+
+import '../../pakitec_components.dart';
 
 class PakiButton extends StatefulWidget {
   final IconData iconData;
