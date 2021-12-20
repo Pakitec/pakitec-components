@@ -8,6 +8,7 @@ class GetZip {
     if (response.statusCode == 200) {
       return ResultZip.fromJson(response.body);
     } else {
+      print(response.body);
       throw Exception('Requisição inválida!');
     }
   }
