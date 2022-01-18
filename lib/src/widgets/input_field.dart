@@ -95,8 +95,14 @@ class _PakiInputFieldState extends State<PakiInputField> {
             prefixIcon: Icon(widget.prefixIcon, color: Colors.white70),
             suffixIcon: IconButton(
                 onPressed: () {
-                  widget.controller.clear();
-                  if (widget.onClear != null) widget.onClear!();
+                  if(keyboardType == TextInputType.number){
+                    widget.controller.text = '0';
+                  } else {
+                    widget.controller.clear();
+                  }
+                  if (widget.onClear != null){
+                    widget.onClear!();
+                  }
                 },
                 icon: const Icon(Icons.clear, color: Colors.white70))));
   }
