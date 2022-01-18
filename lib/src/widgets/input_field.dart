@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pakitec_components/src/styles/main_style.dart';
+
 import '../../pakitec_components.dart';
 
 class PakiInputField extends StatefulWidget {
@@ -20,7 +21,8 @@ class PakiInputField extends StatefulWidget {
   final bool? removeHorizontalDiv;
 
   const PakiInputField(
-      {Key? key, this.name,
+      {Key? key,
+      this.name,
       required this.controller,
       this.keyboardType,
       this.willValidate,
@@ -34,7 +36,8 @@ class PakiInputField extends StatefulWidget {
       this.hint,
       this.prefixIcon,
       this.autoFillHints,
-      this.removeHorizontalDiv}) : super(key: key);
+      this.removeHorizontalDiv})
+      : super(key: key);
 
   @override
   _PakiInputFieldState createState() => _PakiInputFieldState();
@@ -65,7 +68,7 @@ class _PakiInputFieldState extends State<PakiInputField> {
   Widget build(BuildContext context) {
     return Column(children: <Widget>[
       widget.autoFillHints != null ? AutofillGroup(child: _textFormField()) : _textFormField(),
-      removeHorizontalDiv ? Container(): const PakiHorizontalDiv()
+      removeHorizontalDiv ? Container() : const PakiHorizontalDiv()
     ]);
   }
 
@@ -77,9 +80,7 @@ class _PakiInputFieldState extends State<PakiInputField> {
 
   Widget _textFormField() {
     return TextFormField(
-        autofillHints: isEnabled
-            ? widget.autoFillHints ?? const Iterable.empty()
-            : null,
+        autofillHints: isEnabled ? widget.autoFillHints ?? const Iterable.empty() : null,
         validator: widget.customValidator ?? _validator,
         onChanged: widget.onChanged,
         maxLines: maxLines,
@@ -95,12 +96,16 @@ class _PakiInputFieldState extends State<PakiInputField> {
             prefixIcon: Icon(widget.prefixIcon, color: Colors.white70),
             suffixIcon: IconButton(
                 onPressed: () {
-                  if(keyboardType == TextInputType.number){
-                    widget.controller.text = '0';
+                  if (keyboardType == TextInputType.number) {
+                    try {
+                      widget.controller.text = '0';
+                    } catch (e) {
+                      debugPrint(e.toString());
+                    }
                   } else {
                     widget.controller.clear();
                   }
-                  if (widget.onClear != null){
+                  if (widget.onClear != null) {
                     widget.onClear!();
                   }
                 },
