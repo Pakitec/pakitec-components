@@ -17,6 +17,7 @@ class PakiInputField extends StatefulWidget {
   final TextAlign? textAlign;
   final String? hint;
   final IconData? prefixIcon;
+  final Widget? prefixWidget;
   final Iterable<String>? autoFillHints;
   final bool? removeHorizontalDiv;
 
@@ -35,6 +36,7 @@ class PakiInputField extends StatefulWidget {
       this.textAlign,
       this.hint,
       this.prefixIcon,
+      this.prefixWidget,
       this.autoFillHints,
       this.removeHorizontalDiv})
       : super(key: key);
@@ -93,7 +95,7 @@ class _PakiInputFieldState extends State<PakiInputField> {
         decoration: InputDecoration(
             labelText: widget.name,
             hintText: widget.hint,
-            prefixIcon: Icon(widget.prefixIcon, color: Colors.white70),
+            prefixIcon: widget.prefixWidget ?? Icon(widget.prefixIcon, color: Colors.white70),
             suffixIcon: IconButton(
                 onPressed: () {
                   if (keyboardType == TextInputType.number) {
