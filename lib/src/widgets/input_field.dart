@@ -100,7 +100,7 @@ class _PakiInputFieldState extends State<PakiInputField> {
                 onPressed: () {
                   if (keyboardType == TextInputType.number) {
                     try {
-                      widget.controller.text = '0';
+                      widget.controller.text = '';
                     } catch (e) {
                       debugPrint(e.toString());
                     }

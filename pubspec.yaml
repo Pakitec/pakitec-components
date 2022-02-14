@@ -1,6 +1,6 @@
 name: pakitec_components
 description: A new Flutter project.
-version: 0.0.13
+version: 0.0.14
 homepage: 'www.pakitec.com.br'
 
 environment:
@@ -16,6 +16,7 @@ dependencies:
   datetime_picker_formfield : ^2.0.0
   rive: ^0.7.22
   http : ^0.13.4
+
 
 dev_dependencies:
   flutter_test:
