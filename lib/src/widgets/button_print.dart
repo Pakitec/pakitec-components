@@ -13,7 +13,7 @@ class PakiButtonPrint extends StatefulWidget {
 class _PakiButtonPrintState extends State<PakiButtonPrint> {
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    return InkWell(
         onTap: widget.onTap,
         child: Container(
             height: 60,
