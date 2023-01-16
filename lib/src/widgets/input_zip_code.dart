@@ -6,10 +6,11 @@ import 'compass_indicator.dart';
 
 class PakiInputZipCode extends StatefulWidget {
   final String name;
+  final IconData? prefixIcon;
   final TextEditingController controller;
   final Function(Map<String, dynamic> value) onSuccess;
 
-  const PakiInputZipCode({Key? key, required this.name, required this.controller, required this.onSuccess}) : super(key: key);
+  const PakiInputZipCode({Key? key, required this.name, this.prefixIcon, required this.controller, required this.onSuccess}) : super(key: key);
 
   @override
   _PakiInputZipCodeState createState() => _PakiInputZipCodeState();
@@ -33,6 +34,7 @@ class _PakiInputZipCodeState extends State<PakiInputZipCode> {
         textAlign: TextAlign.center,
         decoration: InputDecoration(
             labelText: widget.name,
+            prefixIcon: Icon(widget.prefixIcon, color: Colors.white70),
             suffixIcon: IconButton(
                 onPressed: () {
                   widget.controller.clear();
