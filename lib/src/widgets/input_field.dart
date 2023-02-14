@@ -78,6 +78,7 @@ class _PakiInputFieldState extends State<PakiInputField> {
     if (value!.isEmpty && willValidate) {
       return 'Campo ${widget.name} obrigatório';
     }
+    return null;
   }
 
   Widget _textFormField() {
