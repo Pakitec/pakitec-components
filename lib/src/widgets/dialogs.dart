@@ -29,6 +29,8 @@ pakiShowQuestionYesNo(
       content: Text(message),
       actions: [yes, no],
       backgroundColor: secondaryColor);
+
+  if (!context.mounted) return;
   showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -38,12 +40,14 @@ pakiShowQuestionYesNo(
 
 pakiShowSnackBar(
     {required BuildContext context, required Widget content, required Color color, SnackBarAction? action}) {
+  if (!context.mounted) return;
   ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(content: content, backgroundColor: color, duration: const Duration(seconds: 5), action: action));
 }
 
 pakiShowSnackBarErrors(
     {required BuildContext context, required String content, SnackBarAction? action, String? urlImage}) {
+  if (!context.mounted) return;
   ScaffoldMessenger.of(context).showSnackBar(SnackBar(
       content: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
         SizedBox(
