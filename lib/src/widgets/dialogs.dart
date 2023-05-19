@@ -12,7 +12,7 @@ pakiShowQuestionYesNo(
   needsConfirm ??= true;
 
   if (!needsConfirm) {
-    onConfirm();
+    onConfirm;
   } else {
     Widget yes = TextButton(
         style: ButtonStyle(backgroundColor: MaterialStateProperty.all(buttonColor)),
