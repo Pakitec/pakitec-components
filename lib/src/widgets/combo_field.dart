@@ -11,7 +11,15 @@ class PakiComboField extends StatefulWidget {
   final bool? removeHorizontalDiv;
   final void Function(String? value) onSelect;
 
-  const PakiComboField({Key? key, required this.label, required this.list, required this.onSelect, this.showSearchBox, this.selectedValue, this.removeHorizontalDiv}) : super(key: key);
+  const PakiComboField(
+      {Key? key,
+      required this.label,
+      required this.list,
+      required this.onSelect,
+      this.showSearchBox,
+      this.selectedValue,
+      this.removeHorizontalDiv})
+      : super(key: key);
 
   @override
   _PakiComboFieldState createState() => _PakiComboFieldState();
@@ -28,22 +36,20 @@ class _PakiComboFieldState extends State<PakiComboField> {
     if (widget.removeHorizontalDiv != null) removeHorizontalDiv = widget.removeHorizontalDiv!;
   }
 
-
   @override
   Widget build(BuildContext context) {
-
     return Column(children: <Widget>[
-    DropdownSearch<String>(
-    mode: Mode.MENU,
-        showSelectedItems: true,
-        showSearchBox: showSearchBox,
-        items: widget.list,
-        // ignore: deprecated_member_use
-        label: widget.label,
-        dropdownSearchTextAlign: TextAlign.center,
-        selectedItem: widget.selectedValue,
-        onChanged: widget.onSelect),
-      removeHorizontalDiv ? Container(): const PakiHorizontalDiv()
+      DropdownSearch<String>(
+          mode: Mode.MENU,
+          showSelectedItems: true,
+          showSearchBox: showSearchBox,
+          items: widget.list,
+          // ignore: deprecated_member_use
+          //label: widget.label,
+          dropdownSearchTextAlign: TextAlign.center,
+          selectedItem: widget.selectedValue,
+          onChanged: widget.onSelect),
+      removeHorizontalDiv ? Container() : const PakiHorizontalDiv()
     ]);
   }
 }
