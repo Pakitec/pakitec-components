@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:rive/rive.dart';
 
-class PakiButtonPrint extends StatefulWidget {
+class PakiPrintButton extends StatefulWidget {
   final Function() onTap;
 
-  const PakiButtonPrint({Key? key, required this.onTap}) : super(key: key);
+  const PakiPrintButton({Key? key, required this.onTap}) : super(key: key);
 
   @override
-  _PakiButtonPrintState createState() => _PakiButtonPrintState();
+  _PakiPrintButtonState createState() => _PakiPrintButtonState();
 }
 
-class _PakiButtonPrintState extends State<PakiButtonPrint> {
+class _PakiPrintButtonState extends State<PakiPrintButton> {
   @override
   Widget build(BuildContext context) {
     return InkWell(

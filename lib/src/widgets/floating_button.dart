@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fluttericon/font_awesome5_icons.dart';
-import 'package:pakitec_components/src/styles/main_style.dart';
+import '../styles/main_style.dart';
 
 
 class PakiAddButton extends StatefulWidget {

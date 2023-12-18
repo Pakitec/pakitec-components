@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fluttericon/font_awesome5_icons.dart';
-import 'package:pakitec_components/src/styles/main_style.dart';
-import '../../pakitec_components.dart';
+import '../styles/main_style.dart';
+import 'divider.dart';
 
 pakiShowQuestionYesNo(
     {required BuildContext context,
@@ -16,20 +16,20 @@ pakiShowQuestionYesNo(
   } else {
     Widget yes = TextButton(
         style: ButtonStyle(backgroundColor: MaterialStateProperty.all(buttonColor)),
-        child: const Text('Sim', style: TextStyle(color: Colors.white)),
-        onPressed: onConfirm);
+        onPressed: onConfirm,
+        child: const Text('Sim', style: TextStyle(color: Colors.white)));
     Widget no = TextButton(
         style: ButtonStyle(backgroundColor: MaterialStateProperty.all(buttonColor)),
-        child: const Text('Não', style: TextStyle(color: Colors.white)),
-        onPressed: onCancel);
+        onPressed: onCancel,
+        child: const Text('Não', style: TextStyle(color: Colors.white)));
     AlertDialog alert = AlertDialog(
         title: const Column(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
           Row(mainAxisAlignment: MainAxisAlignment.center, children: [
             Text('Atenção'),
-            PakiVerticalDiv(value: 5.0),
+            PakiVerticalDiv(width: 5.0),
             Icon(FontAwesome5.exclamation_circle),
           ]),
-          PakiHorizontalDiv(value: 15.0),
+          PakiHorizontalDiv(height: 15.0),
           Divider(height: 1.0, color: Colors.white)
         ]),
         content: Text(message),

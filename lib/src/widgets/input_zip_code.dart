@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:pakitec_components/src/styles/main_style.dart';
-import '../../pakitec_components.dart';
 import '../services/zip_service.dart';
+import '../styles/main_style.dart';
 import 'compass_indicator.dart';
+import 'dialogs.dart';
+import 'divider.dart';
 
 class PakiInputZipCode extends StatefulWidget {
   final String name;
@@ -49,12 +50,12 @@ class _PakiInputZipCodeState extends State<PakiInputZipCode> {
         textAlign: textAlign,
         decoration: InputDecoration(
             labelText: widget.name,
-            prefixIcon: Icon(widget.prefixIcon, color: Colors.white70),
+            prefixIcon: widget.prefixIcon != null ? Icon(widget.prefixIcon, color: Colors.white70): null,
             suffixIcon: IconButton(
                 onPressed: () {
                   widget.controller.clear();
                 },
-                icon: isLoading ? const CompassIndicator() : const Icon(Icons.clear, color: Colors.white70))));
+                icon: isLoading ? const PakiCompassIndicator() : const Icon(Icons.clear, color: Colors.white70))));
 
     return Column(children: <Widget>[textFormField, const PakiHorizontalDiv()]);
   }

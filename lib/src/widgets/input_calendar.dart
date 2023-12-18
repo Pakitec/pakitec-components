@@ -2,8 +2,9 @@ import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttericon/font_awesome5_icons.dart';
 import 'package:intl/intl.dart';
-import 'package:pakitec_components/src/styles/main_style.dart';
-import '../../pakitec_components.dart';
+
+import '../styles/main_style.dart';
+import 'divider.dart';
 
 class PakiInputCalendar extends StatefulWidget {
 
@@ -14,10 +15,12 @@ class PakiInputCalendar extends StatefulWidget {
   final bool? isEnabled;
   final String? formatCalendar;
   final bool? isDate;
+  final IconData? prefixIcon;
+  final Widget? prefixWidget;
   final Function(DateTime? value) onChanged;
 
   const PakiInputCalendar({Key? key, required this.name, required this.controller, this.willValidate, this.isEnabled,
-    this.formatCalendar, this.isDate, required this.onChanged}) : super(key: key);
+    this.formatCalendar, this.isDate, this.prefixIcon, this.prefixWidget, required this.onChanged}) : super(key: key);
 
   @override
   _PakiInputCalendarState createState() => _PakiInputCalendarState();
@@ -52,7 +55,8 @@ class _PakiInputCalendarState extends State<PakiInputCalendar> {
         onChanged: widget.onChanged,
         decoration: InputDecoration(
             labelText: widget.name,
-            suffixIcon: IconButton(onPressed: () => widget.controller.clear(), icon: const Icon(FontAwesome5.calendar))
+            prefixIcon: widget.prefixWidget ?? (widget.prefixIcon != null ? Icon(widget.prefixIcon, color: Colors.white70): null),
+            suffixIcon: IconButton(onPressed: (){}, icon: const Icon(FontAwesome5.calendar))
                 ),
         onShowPicker: (context, dynamic currentValue) async {
           TimeOfDay? _time;

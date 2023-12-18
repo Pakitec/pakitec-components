@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:rive/rive.dart';
 
-class CompassIndicator extends StatefulWidget {
-  const CompassIndicator({Key? key}) : super(key: key);
+class PakiCompassIndicator extends StatefulWidget {
+  const PakiCompassIndicator({Key? key}) : super(key: key);
 
 
   @override
-  _CompassIndicatorState createState() => _CompassIndicatorState();
+  _PakiCompassIndicatorState createState() => _PakiCompassIndicatorState();
 }
 
-class _CompassIndicatorState extends State<CompassIndicator> {
+class _PakiCompassIndicatorState extends State<PakiCompassIndicator> {
   @override
   Widget build(BuildContext context) {
     return Container(

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:pakitec_components/pakitec_components.dart';
 import '../styles/main_style.dart';
+import 'divider.dart';
 
 class PakiImageBackground extends StatelessWidget {
   final String? url;

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:pakitec_components/src/styles/main_style.dart';
 
-import '../../pakitec_components.dart';
+import '../styles/main_style.dart';
+import 'divider.dart';
 
 class PakiInputField extends StatefulWidget {
   final String? name;
@@ -96,7 +96,7 @@ class _PakiInputFieldState extends State<PakiInputField> {
         decoration: InputDecoration(
             labelText: widget.name,
             hintText: widget.hint,
-            prefixIcon: widget.prefixWidget ?? Icon(widget.prefixIcon, color: Colors.white70),
+            prefixIcon: widget.prefixWidget ?? (widget.prefixIcon != null ? Icon(widget.prefixIcon, color: Colors.white70): null),
             suffixIcon: IconButton(
                 onPressed: () {
                   if (keyboardType == TextInputType.number) {

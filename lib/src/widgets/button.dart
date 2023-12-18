@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:pakitec_components/src/styles/main_style.dart';
 
-import '../../pakitec_components.dart';
+import '../styles/main_style.dart';
+import 'divider.dart';
 
 class PakiButton extends StatefulWidget {
   final IconData iconData;
@@ -30,13 +30,13 @@ class _PakiButtonState extends State<PakiButton> {
             child: Row(
               children: [
                 Icon(widget.iconData),
-                const PakiVerticalDiv(value: 7.5),
+                const PakiVerticalDiv(width: 7.5),
                 Text(
                   widget.text,
                   style: const TextStyle(fontSize: 11.0),
-                  textAlign: TextAlign.center,
+                  textAlign: TextAlign.justify,
                 )
-              ],
+              ]
             )));
   }
 }
