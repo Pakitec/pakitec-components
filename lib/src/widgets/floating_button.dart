@@ -6,10 +6,10 @@ import '../styles/main_style.dart';
 class PakiAddButton extends StatefulWidget {
   final Function() onPressed;
 
-  const PakiAddButton(this.onPressed, {Key? key}) : super(key: key);
+  const PakiAddButton({Key? key, required this.onPressed}) : super(key: key);
 
   @override
-  _PakiAddButtonState createState() => _PakiAddButtonState();
+  State<PakiAddButton> createState() => _PakiAddButtonState();
 }
 
 class _PakiAddButtonState extends State<PakiAddButton> {
