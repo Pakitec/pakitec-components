@@ -18,6 +18,7 @@ class PakiInputField extends StatefulWidget {
   final String? hint;
   final IconData? prefixIcon;
   final Widget? prefixWidget;
+  final Widget? suffixWidget;
   final Iterable<String>? autoFillHints;
   final bool? removeHorizontalDiv;
 
@@ -37,6 +38,7 @@ class PakiInputField extends StatefulWidget {
       this.hint,
       this.prefixIcon,
       this.prefixWidget,
+      this.suffixWidget,
       this.autoFillHints,
       this.removeHorizontalDiv})
       : super(key: key);
@@ -96,22 +98,24 @@ class _PakiInputFieldState extends State<PakiInputField> {
         decoration: InputDecoration(
             labelText: widget.name,
             hintText: widget.hint,
-            prefixIcon: widget.prefixWidget ?? (widget.prefixIcon != null ? Icon(widget.prefixIcon, color: Colors.white70): null),
-            suffixIcon: IconButton(
-                onPressed: () {
-                  if (keyboardType == TextInputType.number) {
-                    try {
-                      widget.controller.text = '';
-                    } catch (e) {
-                      debugPrint(e.toString());
-                    }
-                  } else {
-                    widget.controller.clear();
-                  }
-                  if (widget.onClear != null) {
-                    widget.onClear!();
-                  }
-                },
-                icon: const Icon(Icons.clear, color: Colors.white70))));
+            prefixIcon: widget.prefixWidget ??
+                (widget.prefixIcon != null ? Icon(widget.prefixIcon, color: Colors.white70) : null),
+            suffixIcon: widget.suffixWidget ??
+                IconButton(
+                    onPressed: () {
+                      if (keyboardType == TextInputType.number) {
+                        try {
+                          widget.controller.text = '';
+                        } catch (e) {
+                          debugPrint(e.toString());
+                        }
+                      } else {
+                        widget.controller.clear();
+                      }
+                      if (widget.onClear != null) {
+                        widget.onClear!();
+                      }
+                    },
+                    icon: const Icon(Icons.clear, color: Colors.white70))));
   }
 }
