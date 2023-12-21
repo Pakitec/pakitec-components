@@ -6,7 +6,7 @@ class PakiCompassIndicator extends StatefulWidget {
 
 
   @override
-  _PakiCompassIndicatorState createState() => _PakiCompassIndicatorState();
+  State<PakiCompassIndicator> createState() => _PakiCompassIndicatorState();
 }
 
 class _PakiCompassIndicatorState extends State<PakiCompassIndicator> {

@@ -15,7 +15,7 @@ class PakiButton extends StatefulWidget {
     this.height}) : super(key: key);
 
   @override
-  _PakiButtonState createState() => _PakiButtonState();
+  State<PakiButton> createState() => _PakiButtonState();
 }
 
 class _PakiButtonState extends State<PakiButton> {

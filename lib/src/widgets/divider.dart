@@ -5,7 +5,7 @@ class PakiHorizontalDiv extends StatefulWidget {
   const PakiHorizontalDiv({Key? key, this.height}) : super(key: key);
 
   @override
-  _PakiHorizontalDivState createState() => _PakiHorizontalDivState();
+  State<PakiHorizontalDiv> createState() => _PakiHorizontalDivState();
 }
 
 class _PakiHorizontalDivState extends State<PakiHorizontalDiv> {
@@ -28,7 +28,7 @@ class PakiVerticalDiv extends StatefulWidget {
   const PakiVerticalDiv({Key? key, this.width}) : super(key: key);
 
   @override
-  _PakiVerticalDivState createState() => _PakiVerticalDivState();
+  State<PakiVerticalDiv> createState() => _PakiVerticalDivState();
 }
 
 class _PakiVerticalDivState extends State<PakiVerticalDiv> {

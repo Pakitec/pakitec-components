@@ -7,7 +7,7 @@ class PakiPrintButton extends StatefulWidget {
   const PakiPrintButton({Key? key, required this.onTap}) : super(key: key);
 
   @override
-  _PakiPrintButtonState createState() => _PakiPrintButtonState();
+  State<PakiPrintButton> createState() => _PakiPrintButtonState();
 }
 
 class _PakiPrintButtonState extends State<PakiPrintButton> {

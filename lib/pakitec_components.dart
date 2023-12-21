@@ -14,4 +14,5 @@ export 'src/widgets/edit_list_view.dart';
 export 'src/widgets/floating_button.dart';
 export 'src/widgets/image_background.dart';
 export '/src/widgets/indicator.dart';
+export '/src/widgets/scaffold.dart';
 

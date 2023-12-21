@@ -22,7 +22,7 @@ class PakiComboField extends StatefulWidget {
       : super(key: key);
 
   @override
-  _PakiComboFieldState createState() => _PakiComboFieldState();
+  State<PakiComboField> createState() => _PakiComboFieldState();
 }
 
 class _PakiComboFieldState extends State<PakiComboField> {

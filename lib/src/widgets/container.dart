@@ -10,7 +10,7 @@ class PakiContainer extends StatefulWidget {
   const PakiContainer({Key? key, this.child, this.ignoreMaxWidth, this.withDecoration}) : super(key: key);
 
   @override
-  _PakiContainerState createState() => _PakiContainerState();
+  State<PakiContainer> createState() => _PakiContainerState();
 }
 
 class _PakiContainerState extends State<PakiContainer> {

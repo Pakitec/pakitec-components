@@ -7,8 +7,6 @@ import '../styles/main_style.dart';
 import 'divider.dart';
 
 class PakiInputCalendar extends StatefulWidget {
-
-
   final String name;
   final TextEditingController controller;
   final bool? willValidate;
@@ -23,7 +21,7 @@ class PakiInputCalendar extends StatefulWidget {
     this.formatCalendar, this.isDate, this.prefixIcon, this.prefixWidget, required this.onChanged}) : super(key: key);
 
   @override
-  _PakiInputCalendarState createState() => _PakiInputCalendarState();
+  State<PakiInputCalendar> createState() => _PakiInputCalendarState();
 }
 
 class _PakiInputCalendarState extends State<PakiInputCalendar> {

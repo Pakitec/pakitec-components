@@ -22,7 +22,7 @@ class PakiInputZipCode extends StatefulWidget {
       : super(key: key);
 
   @override
-  _PakiInputZipCodeState createState() => _PakiInputZipCodeState();
+  State<PakiInputZipCode> createState() => _PakiInputZipCodeState();
 }
 
 class _PakiInputZipCodeState extends State<PakiInputZipCode> {
