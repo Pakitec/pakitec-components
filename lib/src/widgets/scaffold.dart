@@ -11,6 +11,8 @@ class PakiScaffold extends StatefulWidget {
   final Function()? onConfirm;
   final Widget? widgetButton;
   final Widget? floatingActionButton;
+  final Widget? drawer;
+  final Widget? bottomNavigationBar;
 
   // final bool? showSideMenu;
 
@@ -23,7 +25,9 @@ class PakiScaffold extends StatefulWidget {
       this.formKey,
       this.onConfirm,
       this.widgetButton,
-      this.floatingActionButton}) : super(key: key);
+      this.floatingActionButton,
+      this.drawer,
+        this.bottomNavigationBar}) : super(key: key);
 
   @override
   State<PakiScaffold> createState() => _PakiScaffoldState();
@@ -44,8 +48,9 @@ class _PakiScaffoldState extends State<PakiScaffold> {
                   ? IconButton(onPressed: widget.onConfirm, icon: const Icon(Icons.check))
                   : Container()
             ]),
-        // drawer: widget.showSideMenu == false ? Container() : const SideMenu(),
+        drawer: widget.drawer,
         floatingActionButton: widget.floatingActionButton,
+        bottomNavigationBar: widget.bottomNavigationBar,
         body: Form(
             key: widget.formKey,
             child: Container(
