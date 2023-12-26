@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../styles/main_style.dart';
+import 'package:pakitec_themes/pakitec_themes.dart';
 import 'divider.dart';
 
 class PakiInputField extends StatefulWidget {
@@ -94,7 +93,7 @@ class _PakiInputFieldState extends State<PakiInputField> {
         keyboardType: keyboardType,
         textAlign: textAlign,
         obscureText: obscureText,
-        style: const TextStyle(color: primaryColor),
+        style: const TextStyle(color: pakiDefaultPrimaryColor),
         decoration: InputDecoration(
             labelText: widget.name,
             hintText: widget.hint,

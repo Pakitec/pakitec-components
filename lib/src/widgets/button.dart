@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../styles/main_style.dart';
+import 'package:pakitec_themes/pakitec_themes.dart';
 import 'divider.dart';
 
 class PakiButton extends StatefulWidget {
@@ -25,7 +24,7 @@ class _PakiButtonState extends State<PakiButton> {
         width: widget.width != null ? widget.width! : 150,
         height: widget.height != null ? widget.height! : 50,
         child: ElevatedButton(
-            style: ButtonStyle(backgroundColor: MaterialStateProperty.all(buttonColor)),
+            style: ButtonStyle(backgroundColor: MaterialStateProperty.all(pakiDefaultButtonColor)),
             onPressed: widget.onPressed,
             child: Row(
               children: [

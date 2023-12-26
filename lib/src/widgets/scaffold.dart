@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../styles/main_style.dart';
+import 'package:pakitec_themes/pakitec_themes.dart';
 
 class PakiScaffold extends StatefulWidget {
   final String? label;
@@ -41,7 +40,7 @@ class _PakiScaffoldState extends State<PakiScaffold> {
             title: widget.widgetLabel ?? Text(widget.label!),
             centerTitle: true,
             elevation: 0.0,
-            backgroundColor: secondaryColor,
+            backgroundColor: pakiDefaultSecondaryColor,
             actions: [
               widget.widgetButton != null ? widget.widgetButton! : Container(),
               widget.onConfirm != null

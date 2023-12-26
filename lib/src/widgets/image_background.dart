@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../styles/main_style.dart';
+import 'package:pakitec_themes/pakitec_themes.dart';
 import 'divider.dart';
 
 class PakiImageBackground extends StatelessWidget {
@@ -11,7 +11,7 @@ class PakiImageBackground extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Widget _imageBackground(url) {
+    Widget imageBackground(url) {
       return Expanded(child: Image.asset(url));
     }
 
@@ -19,9 +19,9 @@ class PakiImageBackground extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        url!.isNotEmpty ? _imageBackground(url) : _imageBackground('assets/images/bermuda-no-data.png'),
+        url!.isNotEmpty ? imageBackground(url) : imageBackground('assets/images/bermuda-no-data.png'),
         const PakiHorizontalDiv(),
-        Text(text!.isNotEmpty ? text! : 'sem dados', style: const TextStyle(color: primaryColor, fontSize: 18.0))
+        Text(text!.isNotEmpty ? text! : 'sem dados', style: const TextStyle(color: pakiDefaultPrimaryColor, fontSize: 18.0))
       ],
     );
   }

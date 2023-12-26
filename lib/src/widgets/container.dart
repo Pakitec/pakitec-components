@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import '../styles/main_style.dart';
+import 'package:pakitec_themes/pakitec_themes.dart';
 
 class PakiContainer extends StatefulWidget {
   final Widget? child;

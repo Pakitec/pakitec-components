@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fluttericon/font_awesome5_icons.dart';
-import '../styles/main_style.dart';
+import 'package:pakitec_themes/pakitec_themes.dart';
 
 
 class PakiAddButton extends StatefulWidget {
@@ -16,6 +16,6 @@ class _PakiAddButtonState extends State<PakiAddButton> {
   @override
   Widget build(BuildContext context) {
     return FloatingActionButton(
-        onPressed: widget.onPressed, backgroundColor: buttonColor, child: const Icon(FontAwesome5.plus, color: Colors.white));
+        onPressed: widget.onPressed, backgroundColor: pakiDefaultButtonColor, child: const Icon(FontAwesome5.plus, color: Colors.white));
   }
 }

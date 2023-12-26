@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fluttericon/font_awesome5_icons.dart';
-import '../styles/main_style.dart';
+import 'package:pakitec_themes/pakitec_themes.dart';
 import 'divider.dart';
 
 pakiShowQuestionYesNo(
@@ -15,11 +15,11 @@ pakiShowQuestionYesNo(
     onConfirm();
   } else {
     Widget yes = TextButton(
-        style: ButtonStyle(backgroundColor: MaterialStateProperty.all(buttonColor)),
+        style: ButtonStyle(backgroundColor: MaterialStateProperty.all(pakiDefaultButtonColor)),
         onPressed: onConfirm,
         child: const Text('Sim', style: TextStyle(color: Colors.white)));
     Widget no = TextButton(
-        style: ButtonStyle(backgroundColor: MaterialStateProperty.all(buttonColor)),
+        style: ButtonStyle(backgroundColor: MaterialStateProperty.all(pakiDefaultButtonColor)),
         onPressed: onCancel,
         child: const Text('Não', style: TextStyle(color: Colors.white)));
     AlertDialog alert = AlertDialog(
@@ -34,7 +34,7 @@ pakiShowQuestionYesNo(
         ]),
         content: Text(message),
         actions: [yes, no],
-        backgroundColor: secondaryColor);
+        backgroundColor: pakiDefaultSecondaryColor);
 
     if (!context.mounted) return;
     showDialog(

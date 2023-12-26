@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../services/zip_service.dart';
-import '../styles/main_style.dart';
+import 'package:pakitec_themes/pakitec_themes.dart';
 import 'compass_indicator.dart';
 import 'dialogs.dart';
 import 'divider.dart';
@@ -46,7 +46,7 @@ class _PakiInputZipCodeState extends State<PakiInputZipCode> {
         controller: widget.controller,
         enabled: !isLoading,
         keyboardType: TextInputType.number,
-        style: const TextStyle(color: primaryColor),
+        style: const TextStyle(color: pakiDefaultPrimaryColor),
         textAlign: textAlign,
         decoration: InputDecoration(
             labelText: widget.name,

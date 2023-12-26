@@ -2,8 +2,7 @@ import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttericon/font_awesome5_icons.dart';
 import 'package:intl/intl.dart';
-
-import '../styles/main_style.dart';
+import 'package:pakitec_themes/pakitec_themes.dart';
 import 'divider.dart';
 
 class PakiInputCalendar extends StatefulWidget {
@@ -49,7 +48,7 @@ class _PakiInputCalendarState extends State<PakiInputCalendar> {
         controller: widget.controller,
         enabled: isEnabled,
         textAlign: TextAlign.center,
-        style: const TextStyle(color: primaryColor),
+        style: const TextStyle(color: pakiDefaultPrimaryColor),
         onChanged: widget.onChanged,
         decoration: InputDecoration(
             labelText: widget.name,
