@@ -27,7 +27,7 @@ class _PakiContainerState extends State<PakiContainer> {
   @override
   Widget build(BuildContext context) {
     return Container(
-        decoration: withDecoration ? boxDecoration : null,
+        decoration: withDecoration ? pakiDefaultBoxDecoration : null,
         child: Center(
             child: Container(
                 width: ignoreMaxWidth

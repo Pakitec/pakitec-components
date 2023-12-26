@@ -53,7 +53,7 @@ class _PakiScaffoldState extends State<PakiScaffold> {
         body: Form(
             key: widget.formKey,
             child: Container(
-                decoration: boxDecoration,
+                decoration: pakiDefaultBoxDecoration,
                 child: Column(children: [
                   widget.head != null ? Container(padding: const EdgeInsets.all(5), child: widget.head) : Container(),
                   Expanded(child: widget.body ?? Container())
