@@ -15,4 +15,5 @@ export 'src/widgets/floating_button.dart';
 export 'src/widgets/image_background.dart';
 export '/src/widgets/indicator.dart';
 export '/src/widgets/scaffold.dart';
+export '/src/widgets/checkbox.dart';
 
