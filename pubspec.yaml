@@ -1,6 +1,6 @@
 name: pakitec_components
 description: components from pakitec devs
-version: 1.0.8
+version: 1.0.9
 homepage: 'www.pakitec.com.br'
 
 environment:
@@ -12,8 +12,8 @@ dependencies:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
-  rive: ^0.7.22
-  http : ^0.13.4
+  rive:
+  http : ^1.0.0
   intl: ^0.18.0
   fluttericon : ^2.0.0
   flutter_placeholder_textlines: ^1.1.2
