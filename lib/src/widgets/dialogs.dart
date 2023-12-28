@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:fluttericon/font_awesome5_icons.dart';
 import 'package:pakitec_themes/pakitec_themes.dart';
 import 'divider.dart';
 
@@ -27,7 +26,7 @@ pakiShowQuestionYesNo(
           Row(mainAxisAlignment: MainAxisAlignment.center, children: [
             Text('Atenção'),
             PakiVerticalDiv(width: 5.0),
-            Icon(FontAwesome5.exclamation_circle),
+            Icon(Icons.info),
           ]),
           PakiHorizontalDiv(height: 15.0),
           Divider(height: 1.0, color: Colors.white)

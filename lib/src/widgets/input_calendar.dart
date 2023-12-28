@@ -1,6 +1,5 @@
 import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttericon/font_awesome5_icons.dart';
 import 'package:intl/intl.dart';
 import 'package:pakitec_themes/pakitec_themes.dart';
 import 'divider.dart';
@@ -53,7 +52,7 @@ class _PakiInputCalendarState extends State<PakiInputCalendar> {
         decoration: InputDecoration(
             labelText: widget.name,
             prefixIcon: widget.prefixWidget ?? (widget.prefixIcon != null ? Icon(widget.prefixIcon, color: Colors.white70): null),
-            suffixIcon: IconButton(onPressed: (){}, icon: const Icon(FontAwesome5.calendar))
+            suffixIcon: IconButton(onPressed: (){}, icon: const Icon(Icons.calendar_month))
                 ),
         onShowPicker: (context, dynamic currentValue) async {
           TimeOfDay? _time;
