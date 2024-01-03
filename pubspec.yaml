@@ -1,7 +1,8 @@
 name: pakitec_components
 description: components from pakitec devs
-version: 1.0.10
+version: 1.0.11
 homepage: 'www.pakitec.com.br'
+publish_to: none
 
 environment:
   sdk: ">=2.15.0 <3.0.0"

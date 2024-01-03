@@ -15,8 +15,18 @@ class PakiInputCalendar extends StatefulWidget {
   final Widget? prefixWidget;
   final Function(DateTime? value) onChanged;
 
-  const PakiInputCalendar({Key? key, required this.name, required this.controller, this.willValidate, this.isEnabled,
-    this.formatCalendar, this.isDate, this.prefixIcon, this.prefixWidget, required this.onChanged}) : super(key: key);
+  const PakiInputCalendar(
+      {Key? key,
+      required this.name,
+      required this.controller,
+      this.willValidate,
+      this.isEnabled,
+      this.formatCalendar,
+      this.isDate,
+      this.prefixIcon,
+      this.prefixWidget,
+      required this.onChanged})
+      : super(key: key);
 
   @override
   State<PakiInputCalendar> createState() => _PakiInputCalendarState();
@@ -35,39 +45,41 @@ class _PakiInputCalendarState extends State<PakiInputCalendar> {
     if (widget.isEnabled != null) isEnabled = widget.isEnabled!;
     if (widget.willValidate != null) willValidate = widget.willValidate!;
     if (widget.formatCalendar != null) formatCalendar = widget.formatCalendar!;
+
+    if (!isDate && formatCalendar == 'dd/MM/yyyy') {
+      formatCalendar = 'HH:mm';
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-
     final format = DateFormat(formatCalendar);
     return Column(children: <Widget>[
       DateTimeField(
-        format: format,
-        controller: widget.controller,
-        enabled: isEnabled,
-        textAlign: TextAlign.center,
-        style: const TextStyle(color: pakiDefaultPrimaryColor),
-        onChanged: widget.onChanged,
-        decoration: InputDecoration(
-            labelText: widget.name,
-            prefixIcon: widget.prefixWidget ?? (widget.prefixIcon != null ? Icon(widget.prefixIcon, color: Colors.white70): null),
-            suffixIcon: IconButton(onPressed: (){}, icon: const Icon(Icons.calendar_month))
-                ),
-        onShowPicker: (context, dynamic currentValue) async {
-          TimeOfDay? _time;
-          DateTime? _date;
-          isDate
-              ? _date = (await showDatePicker(
-              context: context,
-              firstDate: DateTime(1900),
-              initialDate: currentValue ?? DateTime.now(),
-              lastDate: DateTime(2100),
-              locale: const Locale('pt', 'BR')))!
-              : _time = (await showTimePicker(initialTime: TimeOfDay.now(), context: context))!;
-          return isDate ? _date : DateTimeField.convert(_time);
-        },
-      ),
+          format: format,
+          controller: widget.controller,
+          enabled: isEnabled,
+          textAlign: TextAlign.center,
+          style: const TextStyle(color: pakiDefaultPrimaryColor),
+          onChanged: widget.onChanged,
+          decoration: InputDecoration(
+              labelText: widget.name,
+              prefixIcon: widget.prefixWidget ??
+                  (widget.prefixIcon != null ? Icon(widget.prefixIcon, color: Colors.white70) : null),
+              suffixIcon: const Icon(Icons.calendar_month)),
+          onShowPicker: (context, dynamic currentValue) async {
+            TimeOfDay? dTime;
+            DateTime? dDate;
+            isDate
+                ? dDate = (await showDatePicker(
+                    context: context,
+                    firstDate: DateTime(1900),
+                    initialDate: currentValue ?? DateTime.now(),
+                    lastDate: DateTime(2100),
+                    locale: const Locale('pt', 'BR')))!
+                : dTime = (await showTimePicker(initialTime: TimeOfDay.now(), context: context))!;
+            return isDate ? dDate : DateTimeField.convert(dTime);
+          }),
       const PakiHorizontalDiv()
     ]);
   }

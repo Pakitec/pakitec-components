@@ -66,6 +66,7 @@ class _PakiInputZipCodeState extends State<PakiInputZipCode> {
     final resultZip = await GetZip.fetchZip(zip: widget.controller.text);
 
     if (resultZip.cep == null) {
+      // ignore: use_build_context_synchronously
       pakiShowSnackBar(context: context, content: const Text('CEP inválido'), color: Colors.red);
       widget.controller.text = '';
       _setLoading(false);
