@@ -50,7 +50,7 @@ class _PakiComboFieldState extends State<PakiComboField> {
             labelText: widget.label,
           ),
         ),
-        onChanged: print,
+        onChanged: widget.onSelect,
         selectedItem: widget.selectedValue,
       ),
 
