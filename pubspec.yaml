@@ -1,6 +1,6 @@
 name: pakitec_components
 description: components from pakitec devs
-version: 1.0.17
+version: 1.0.18
 homepage: 'www.pakitec.com.br'
 publish_to: none
 
@@ -15,7 +15,7 @@ dependencies:
     sdk: flutter
   rive:
   http : ^1.0.0
-  intl: ^0.18.1
+  intl: ^0.19.0
   flutter_placeholder_textlines: ^1.1.2
   datetime_picker_formfield : ^2.0.0
   flutter_masked_text2: ^0.9.1
