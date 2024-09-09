@@ -7,20 +7,26 @@ pakiShowQuestionYesNo(
     required String message,
     required Function() onConfirm,
     required Function() onCancel,
+    bool? isLoading,
     bool? needsConfirm}) {
   needsConfirm ??= true;
+  isLoading ??= false;
 
   if (!needsConfirm) {
     onConfirm();
   } else {
-    Widget yes = TextButton(
-        style: ButtonStyle(backgroundColor: MaterialStateProperty.all(pakiDefaultButtonColor)),
-        onPressed: onConfirm,
-        child: const Text('Sim', style: TextStyle(color: Colors.white)));
-    Widget no = TextButton(
-        style: ButtonStyle(backgroundColor: MaterialStateProperty.all(pakiDefaultButtonColor)),
-        onPressed: onCancel,
-        child: const Text('Não', style: TextStyle(color: Colors.white)));
+    Widget yes = isLoading
+        ? const Center(child: CircularProgressIndicator())
+        : TextButton(
+            style: ButtonStyle(backgroundColor: MaterialStateProperty.all(pakiDefaultButtonColor)),
+            onPressed: onConfirm,
+            child: const Text('Sim', style: TextStyle(color: Colors.white)));
+    Widget no = isLoading
+        ? const Center(child: CircularProgressIndicator())
+        : TextButton(
+            style: ButtonStyle(backgroundColor: MaterialStateProperty.all(pakiDefaultButtonColor)),
+            onPressed: onCancel,
+            child: const Text('Não', style: TextStyle(color: Colors.white)));
     AlertDialog alert = AlertDialog(
         title: const Column(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
           Row(mainAxisAlignment: MainAxisAlignment.center, children: [
