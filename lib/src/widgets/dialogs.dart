@@ -72,6 +72,7 @@ void pakiShowQuestionYesNo({
         return StatefulBuilder( // Permite que o diálogo atualize o estado
           builder: (context, setState) {
             // Botões que mudam dependendo do estado de isLoading
+
             Widget yes = isLoading!
                 ? const Center(child: CircularProgressIndicator())
                 : TextButton(
@@ -110,7 +111,7 @@ void pakiShowQuestionYesNo({
                 ],
               ),
               content: Text(message),
-              actions: [yes, no],
+              actions: [Row(children: [yes, const PakiVerticalDiv() , no])],
               backgroundColor: pakiDefaultSecondaryColor,
             );
           },
