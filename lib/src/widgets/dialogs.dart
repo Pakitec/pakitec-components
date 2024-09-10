@@ -111,7 +111,7 @@ void pakiShowQuestionYesNo({
                 ],
               ),
               content: Text(message),
-              actions: [Row(children: [yes, const PakiVerticalDiv() , no])],
+              actions: [Row(mainAxisAlignment: MainAxisAlignment.end,  children: [yes, const PakiVerticalDiv() , no])],
               backgroundColor: pakiDefaultSecondaryColor,
             );
           },
