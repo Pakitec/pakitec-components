@@ -20,6 +20,7 @@ class PakiInputField extends StatefulWidget {
   final Widget? suffixWidget;
   final Iterable<String>? autoFillHints;
   final bool? removeHorizontalDiv;
+  final bool? isPasswordField;
 
   const PakiInputField(
       {Key? key,
@@ -39,7 +40,8 @@ class PakiInputField extends StatefulWidget {
       this.prefixWidget,
       this.suffixWidget,
       this.autoFillHints,
-      this.removeHorizontalDiv})
+      this.removeHorizontalDiv,
+      this.isPasswordField})
       : super(key: key);
 
   @override
@@ -54,6 +56,9 @@ class _PakiInputFieldState extends State<PakiInputField> {
   int maxLines = 1;
   TextAlign textAlign = TextAlign.center;
   bool removeHorizontalDiv = false;
+  bool isPasswordField = false;
+
+  bool localObscureText = true;
 
   @override
   void initState() {
@@ -65,6 +70,7 @@ class _PakiInputFieldState extends State<PakiInputField> {
     if (widget.maxLines != null) maxLines = widget.maxLines!;
     if (widget.textAlign != null) textAlign = widget.textAlign!;
     if (widget.removeHorizontalDiv != null) removeHorizontalDiv = widget.removeHorizontalDiv!;
+    if (widget.isPasswordField != null) isPasswordField = widget.isPasswordField!;
   }
 
   @override
@@ -92,29 +98,37 @@ class _PakiInputFieldState extends State<PakiInputField> {
         enabled: isEnabled,
         keyboardType: keyboardType,
         textAlign: textAlign,
-        obscureText: obscureText,
+        obscureText: isPasswordField ? localObscureText : obscureText,
         style: const TextStyle(color: pakiDefaultPrimaryColor),
         decoration: InputDecoration(
             labelText: widget.name,
             hintText: widget.hint,
             prefixIcon: widget.prefixWidget ??
                 (widget.prefixIcon != null ? Icon(widget.prefixIcon, color: Colors.white70) : null),
-            suffixIcon: widget.suffixWidget ??
-                IconButton(
+            suffixIcon: isPasswordField
+                ? IconButton(
+                    icon: const Icon(Icons.remove_red_eye),
                     onPressed: () {
-                      if (keyboardType == TextInputType.number) {
-                        try {
-                          widget.controller.text = '';
-                        } catch (e) {
-                          debugPrint(e.toString());
-                        }
-                      } else {
-                        widget.controller.clear();
-                      }
-                      if (widget.onClear != null) {
-                        widget.onClear!();
-                      }
-                    },
-                    icon: const Icon(Icons.clear, color: Colors.white70))));
+                      setState(() {
+                        localObscureText = !localObscureText;
+                      });
+                    })
+                : widget.suffixWidget ??
+                    IconButton(
+                        onPressed: () {
+                          if (keyboardType == TextInputType.number) {
+                            try {
+                              widget.controller.text = '';
+                            } catch (e) {
+                              debugPrint(e.toString());
+                            }
+                          } else {
+                            widget.controller.clear();
+                          }
+                          if (widget.onClear != null) {
+                            widget.onClear!();
+                          }
+                        },
+                        icon: const Icon(Icons.clear, color: Colors.white70))));
   }
 }
