@@ -11,6 +11,7 @@ class PakiInputField extends StatefulWidget {
   final bool? obscureText;
   final String? Function(String? value)? customValidator;
   final Function(String value)? onChanged;
+  final Function(String? value)? onSaved;
   final Function()? onClear;
   final int? maxLines;
   final TextAlign? textAlign;
@@ -32,6 +33,7 @@ class PakiInputField extends StatefulWidget {
       this.obscureText,
       this.customValidator,
       this.onChanged,
+      this.onSaved,
       this.onClear,
       this.maxLines,
       this.textAlign,
@@ -93,6 +95,7 @@ class _PakiInputFieldState extends State<PakiInputField> {
         autofillHints: isEnabled ? widget.autoFillHints ?? const Iterable.empty() : null,
         validator: widget.customValidator ?? _validator,
         onChanged: widget.onChanged,
+        onSaved: widget.onSaved,
         maxLines: maxLines,
         controller: widget.controller,
         enabled: isEnabled,
