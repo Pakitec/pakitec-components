@@ -113,8 +113,10 @@ class _PakiInputZipCodeState extends State<PakiInputZipCode> {
         color: Colors.red,
       );
       widget.controller.text = '';
+      _setLoading(false);
     } else {
       widget.onSuccess(resultZip.toMap());
+      _setLoading(false);
     }
 
     _setLoading(false);
