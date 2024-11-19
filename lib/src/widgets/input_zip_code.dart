@@ -41,7 +41,9 @@ class _PakiInputZipCodeState extends State<PakiInputZipCode> {
     // Adiciona listener para detectar quando o campo perde o foco
     _focusNode.addListener(() {
       if (!_focusNode.hasFocus) {
-        if (widget.controller.text.length < 9) {
+        final cleanZip = _cleanZip(widget.controller.text);
+
+        if (cleanZip.length < 8) {
           // Mostra mensagem de erro para CEP inválido
           pakiShowSnackBar(
             context: context,
@@ -49,7 +51,7 @@ class _PakiInputZipCodeState extends State<PakiInputZipCode> {
             color: Colors.red,
           );
         } else {
-          _getZip();
+          _getZip(cleanZip);
         }
       }
     });
@@ -68,8 +70,9 @@ class _PakiInputZipCodeState extends State<PakiInputZipCode> {
       children: <Widget>[
         TextFormField(
           onChanged: (value) {
-            if (value.length == 9) {
-              _getZip();
+            final cleanZip = _cleanZip(value);
+            if (cleanZip.length == 8) {
+              _getZip(cleanZip);
             }
           },
           controller: widget.controller,
@@ -98,33 +101,46 @@ class _PakiInputZipCodeState extends State<PakiInputZipCode> {
     );
   }
 
-  Future _getZip() async {
-    if (isLoading) return;
+  Future<void> _getZip(String cleanZip) async {
+    if (isLoading) return; // Evita chamadas concorrentes
 
     _setLoading(true);
 
-    final resultZip = await GetZip.fetchZip(zip: widget.controller.text);
+    try {
+      final resultZip = await GetZip.fetchZip(zip: cleanZip);
 
-    if (resultZip.cep == null) {
+      if (resultZip.cep == null) {
+        // ignore: use_build_context_synchronously
+        pakiShowSnackBar(
+          context: context,
+          content: const Text('CEP inválido'),
+          color: Colors.red,
+        );
+        widget.controller.text = '';
+      } else {
+        widget.onSuccess(resultZip.toMap());
+      }
+    } catch (e) {
       // ignore: use_build_context_synchronously
       pakiShowSnackBar(
         context: context,
-        content: const Text('CEP inválido'),
+        content: const Text('Erro ao buscar CEP'),
         color: Colors.red,
       );
-      widget.controller.text = '';
-      _setLoading(false);
-    } else {
-      widget.onSuccess(resultZip.toMap());
+    } finally {
+      // Garante que isLoading será atualizado
       _setLoading(false);
     }
-
-    _setLoading(false);
   }
 
   void _setLoading(bool status) {
     setState(() {
       isLoading = status;
     });
+  }
+
+  String _cleanZip(String zip) {
+    // Remove todos os caracteres não numéricos
+    return zip.replaceAll(RegExp(r'[^0-9]'), '');
   }
 }
