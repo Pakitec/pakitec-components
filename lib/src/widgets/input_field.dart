@@ -116,7 +116,7 @@ class _PakiInputFieldState extends State<PakiInputField> {
                 (widget.prefixIcon != null ? Icon(widget.prefixIcon, color: Colors.white70) : null),
             suffixIcon: isPasswordField
                 ? IconButton(
-                    icon: const Icon(Icons.remove_red_eye),
+                    icon: const Icon(Icons.remove_red_eye, color: Colors.white70),
                     onPressed: () {
                       setState(() {
                         localObscureText = !localObscureText;
