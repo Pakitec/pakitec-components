@@ -122,6 +122,8 @@ class _PakiInputZipCodeState extends State<PakiInputZipCode> {
       }
     } catch (e) {
       // ignore: use_build_context_synchronously
+      print('err: ${e.toString()}');
+
       pakiShowSnackBar(
         context: context,
         content: const Text('Erro ao buscar CEP'),
