@@ -112,7 +112,7 @@ class _PakiInputZipCodeState extends State<PakiInputZipCode> {
 
       print(resultZip.toMap());
 
-      if ((resultZip.cep ?? '') == '') {
+      if (resultZip.cep!.toString().isEmpty) {
         // ignore: use_build_context_synchronously
         pakiShowSnackBar(
           context: context,
