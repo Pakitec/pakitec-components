@@ -109,7 +109,7 @@ class _PakiInputZipCodeState extends State<PakiInputZipCode> {
     try {
       final resultZip = await GetZip.fetchZip(zip: cleanZip);
 
-      if (resultZip.cep == null) {
+      if ((resultZip.cep ?? '') == '') {
         // ignore: use_build_context_synchronously
         pakiShowSnackBar(
           context: context,
@@ -122,7 +122,7 @@ class _PakiInputZipCodeState extends State<PakiInputZipCode> {
       }
     } catch (e) {
       // ignore: use_build_context_synchronously
-      print('err: ${e.toString()}');
+      //print('err: ${e.toString()}');
 
       pakiShowSnackBar(
         context: context,
