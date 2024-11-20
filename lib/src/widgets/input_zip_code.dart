@@ -29,6 +29,7 @@ class _PakiInputZipCodeState extends State<PakiInputZipCode> {
   bool isLoading = false;
   TextAlign textAlign = TextAlign.center;
   late FocusNode _focusNode;
+  String cleanZip = '';
 
   @override
   void initState() {
@@ -41,7 +42,7 @@ class _PakiInputZipCodeState extends State<PakiInputZipCode> {
     // Adiciona listener para detectar quando o campo perde o foco
     _focusNode.addListener(() {
       if (!_focusNode.hasFocus) {
-        final cleanZip = _cleanZip(widget.controller.text);
+        cleanZip = _cleanZip(widget.controller.text);
 
         if (cleanZip.length < 8) {
           // Mostra mensagem de erro para CEP inválido
@@ -70,7 +71,7 @@ class _PakiInputZipCodeState extends State<PakiInputZipCode> {
       children: <Widget>[
         TextFormField(
           onChanged: (value) {
-            final cleanZip = _cleanZip(value);
+            cleanZip = _cleanZip(value);
             if (cleanZip.length == 8) {
               _getZip(cleanZip);
             }
@@ -109,6 +110,8 @@ class _PakiInputZipCodeState extends State<PakiInputZipCode> {
     try {
       final resultZip = await GetZip.fetchZip(zip: cleanZip);
 
+      print(resultZip.toMap());
+
       if ((resultZip.cep ?? '') == '') {
         // ignore: use_build_context_synchronously
         pakiShowSnackBar(
@@ -122,7 +125,7 @@ class _PakiInputZipCodeState extends State<PakiInputZipCode> {
       }
     } catch (e) {
       // ignore: use_build_context_synchronously
-      //print('err: ${e.toString()}');
+      print('err: ${e.toString()}');
 
       pakiShowSnackBar(
         context: context,
