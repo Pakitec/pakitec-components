@@ -113,17 +113,18 @@ class _PakiInputZipCodeState extends State<PakiInputZipCode> {
       print(resultZip.toMap());
       print(resultZip.cep);
 
-      if (resultZip.cep!.toString().isEmpty) {
-        // ignore: use_build_context_synchronously
-        pakiShowSnackBar(
-          context: context,
-          content: const Text('CEP inválido'),
-          color: Colors.red,
-        );
-        widget.controller.text = '';
-      } else {
-        widget.onSuccess(resultZip.toMap());
-      }
+      // if (resultZip.cep!.toString().isEmpty) {
+      //   // ignore: use_build_context_synchronously
+      //   pakiShowSnackBar(
+      //     context: context,
+      //     content: const Text('CEP inválido'),
+      //     color: Colors.red,
+      //   );
+      //   widget.controller.text = '';
+      // } else {
+      //   widget.onSuccess(resultZip.toMap());
+      // }
+      widget.onSuccess(resultZip.toMap());
     } catch (e) {
       // ignore: use_build_context_synchronously
       print('err component: ${e.toString()}');
