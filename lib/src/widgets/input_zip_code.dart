@@ -41,7 +41,7 @@ class _PakiInputZipCodeState extends State<PakiInputZipCode> {
 
     // Adiciona listener para detectar quando o campo perde o foco
     _focusNode.addListener(() {
-      if (!_focusNode.hasFocus) {
+      if (!_focusNode.hasFocus && !isLoading) {
         cleanZip = _cleanZip(widget.controller.text);
 
         if (cleanZip.length < 8) {
