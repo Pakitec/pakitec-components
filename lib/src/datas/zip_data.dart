@@ -28,26 +28,26 @@ class ResultZip {
   String toJson() => json.encode(toMap());
 
   factory ResultZip.fromMap(Map<String, dynamic> map) => ResultZip(
-        cep: map['cep'],
-        logradouro: map['logradouro'],
-        complemento: map['complemento'],
-        bairro: map['bairro'],
-        localidade: map['localidade'],
-        uf: map['uf'],
-        unidade: map['unidade'],
-        ibge: map['ibge'],
-        gia: map['gia'],
+        cep: map['cep'] ?? '',
+        logradouro: map['logradouro'] ?? '',
+        complemento: map['complemento'] ?? '',
+        bairro: map['bairro'] ?? '',
+        localidade: map['localidade'] ?? '',
+        uf: map['uf'] ?? '',
+        unidade: map['unidade'] ?? '',
+        ibge: map['ibge'] ?? '',
+        gia: map['gia'] ?? '',
       );
 
   Map<String, dynamic> toMap() => {
-        'cep': cep,
-        'logradouro': logradouro,
-        'complemento': complemento,
-        'bairro': bairro,
-        'localidade': localidade,
-        'uf': uf,
-        'unidade': unidade,
-        'ibge': ibge,
-        'gia': gia,
+        'cep': cep ?? '',
+        'logradouro': logradouro ?? '',
+        'complemento': complemento ?? '',
+        'bairro': bairro ?? '',
+        'localidade': localidade ?? '',
+        'uf': uf ?? '',
+        'unidade': unidade ?? '',
+        'ibge': ibge ?? '',
+        'gia': gia ?? '',
       };
 }
