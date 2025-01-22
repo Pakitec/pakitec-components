@@ -13,6 +13,7 @@ class PakiInputCalendar extends StatefulWidget {
   final bool? isDate;
   final IconData? prefixIcon;
   final Widget? prefixWidget;
+  final DatePickerEntryMode? datePickerEntryMode;
   final Function(DateTime? value) onChanged;
 
   const PakiInputCalendar(
@@ -25,6 +26,7 @@ class PakiInputCalendar extends StatefulWidget {
       this.isDate,
       this.prefixIcon,
       this.prefixWidget,
+      this.datePickerEntryMode,
       required this.onChanged})
       : super(key: key);
 
@@ -73,6 +75,7 @@ class _PakiInputCalendarState extends State<PakiInputCalendar> {
             isDate
                 ? dDate = (await showDatePicker(
                     context: context,
+                    initialEntryMode: widget.datePickerEntryMode ?? DatePickerEntryMode.calendar,
                     firstDate: DateTime(1900),
                     initialDate: currentValue ?? DateTime.now(),
                     lastDate: DateTime(2100),
