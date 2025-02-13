@@ -91,9 +91,10 @@ class _PakiInputZipCodeState extends State<PakiInputZipCode> {
               onPressed: () {
                 widget.controller.clear();
               },
-              icon: isLoading
-                  ? const PakiCompassIndicator()
-                  : const Icon(Icons.clear, color: Colors.white70),
+              // icon: isLoading
+              //     ? const PakiCompassIndicator()
+              //     : const Icon(Icons.clear, color: Colors.white70),
+              icon: const Icon(Icons.clear, color: Colors.white70)
             ),
           ),
         ),
