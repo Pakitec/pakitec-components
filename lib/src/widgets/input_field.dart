@@ -15,7 +15,8 @@ class PakiInputField extends StatefulWidget {
   final Function(String value)? onFieldSubmitted;
   final Function()? onEditingComplete;
   final Function()? onClear;
-  final Function()? onFocusOut; // Nova propriedade
+  final Function()? onFocusOut; // Callback quando o foco sai do campo
+  final Function()? onFocusIn; // Novo callback quando o foco entra no campo
   final int? maxLines;
   final TextAlign? textAlign;
   final String? hint;
@@ -26,31 +27,32 @@ class PakiInputField extends StatefulWidget {
   final bool? removeHorizontalDiv;
   final bool? isPasswordField;
 
-  const PakiInputField(
-      {Key? key,
-        this.name,
-        required this.controller,
-        this.keyboardType,
-        this.willValidate,
-        this.isEnabled,
-        this.obscureText,
-        this.customValidator,
-        this.onChanged,
-        this.onSaved,
-        this.onFieldSubmitted,
-        this.onEditingComplete,
-        this.onClear,
-        this.onFocusOut, // Nova propriedade no construtor
-        this.maxLines,
-        this.textAlign,
-        this.hint,
-        this.prefixIcon,
-        this.prefixWidget,
-        this.suffixWidget,
-        this.autoFillHints,
-        this.removeHorizontalDiv,
-        this.isPasswordField})
-      : super(key: key);
+  const PakiInputField({
+    Key? key,
+    this.name,
+    required this.controller,
+    this.keyboardType,
+    this.willValidate,
+    this.isEnabled,
+    this.obscureText,
+    this.customValidator,
+    this.onChanged,
+    this.onSaved,
+    this.onFieldSubmitted,
+    this.onEditingComplete,
+    this.onClear,
+    this.onFocusOut, // Adicionado na versão anterior
+    this.onFocusIn, // Novo callback
+    this.maxLines,
+    this.textAlign,
+    this.hint,
+    this.prefixIcon,
+    this.prefixWidget,
+    this.suffixWidget,
+    this.autoFillHints,
+    this.removeHorizontalDiv,
+    this.isPasswordField,
+  }) : super(key: key);
 
   @override
   State<PakiInputField> createState() => _PakiInputFieldState();
@@ -72,6 +74,7 @@ class _PakiInputFieldState extends State<PakiInputField> {
   @override
   void initState() {
     super.initState();
+
     if (widget.keyboardType != null) keyboardType = widget.keyboardType!;
     if (widget.willValidate != null) willValidate = widget.willValidate!;
     if (widget.isEnabled != null) isEnabled = widget.isEnabled!;
@@ -81,12 +84,16 @@ class _PakiInputFieldState extends State<PakiInputField> {
     if (widget.removeHorizontalDiv != null) removeHorizontalDiv = widget.removeHorizontalDiv!;
     if (widget.isPasswordField != null) isPasswordField = widget.isPasswordField!;
 
-    // Inicializa o FocusNode e adiciona o listener para detectar quando o foco é perdido
+    // Inicializa o FocusNode e adiciona os listeners para detectar entrada e saída de foco
     _focusNode = FocusNode();
     _focusNode.addListener(() {
-      if (!_focusNode.hasFocus) {
+      if (_focusNode.hasFocus) {
+        if (widget.onFocusIn != null) {
+          widget.onFocusIn!(); // Chamado quando o campo recebe foco
+        }
+      } else {
         if (widget.onFocusOut != null) {
-          widget.onFocusOut!();
+          widget.onFocusOut!(); // Chamado quando o campo perde foco
         }
       }
     });
@@ -115,49 +122,52 @@ class _PakiInputFieldState extends State<PakiInputField> {
 
   Widget _textFormField() {
     return TextFormField(
-        autofillHints: isEnabled ? widget.autoFillHints ?? const Iterable.empty() : null,
-        validator: widget.customValidator ?? _validator,
-        onChanged: widget.onChanged,
-        onSaved: widget.onSaved,
-        onFieldSubmitted: widget.onFieldSubmitted,
-        onEditingComplete: widget.onEditingComplete,
-        maxLines: maxLines,
-        controller: widget.controller,
-        focusNode: _focusNode, // Adiciona o FocusNode para detectar foco
-        enabled: isEnabled,
-        keyboardType: keyboardType,
-        textAlign: textAlign,
-        obscureText: isPasswordField ? localObscureText : obscureText,
-        style: const TextStyle(color: pakiDefaultPrimaryColor),
-        decoration: InputDecoration(
-            labelText: widget.name,
-            hintText: widget.hint,
-            prefixIcon: widget.prefixWidget ??
-                (widget.prefixIcon != null ? Icon(widget.prefixIcon, color: Colors.white70) : null),
-            suffixIcon: isPasswordField
-                ? IconButton(
-                icon: const Icon(Icons.remove_red_eye, color: Colors.white70),
-                onPressed: () {
-                  setState(() {
-                    localObscureText = !localObscureText;
-                  });
-                })
-                : widget.suffixWidget ??
-                IconButton(
-                    onPressed: () {
-                      if (keyboardType == TextInputType.number) {
-                        try {
-                          widget.controller.text = '';
-                        } catch (e) {
-                          debugPrint(e.toString());
-                        }
-                      } else {
-                        widget.controller.clear();
-                      }
-                      if (widget.onClear != null) {
-                        widget.onClear!();
-                      }
-                    },
-                    icon: const Icon(Icons.clear, color: Colors.white70))));
+      autofillHints: isEnabled ? widget.autoFillHints ?? const Iterable.empty() : null,
+      validator: widget.customValidator ?? _validator,
+      onChanged: widget.onChanged,
+      onSaved: widget.onSaved,
+      onFieldSubmitted: widget.onFieldSubmitted,
+      onEditingComplete: widget.onEditingComplete,
+      maxLines: maxLines,
+      controller: widget.controller,
+      focusNode: _focusNode, // Adiciona o FocusNode para detectar foco
+      enabled: isEnabled,
+      keyboardType: keyboardType,
+      textAlign: textAlign,
+      obscureText: isPasswordField ? localObscureText : obscureText,
+      style: const TextStyle(color: pakiDefaultPrimaryColor),
+      decoration: InputDecoration(
+        labelText: widget.name,
+        hintText: widget.hint,
+        prefixIcon: widget.prefixWidget ??
+            (widget.prefixIcon != null ? Icon(widget.prefixIcon, color: Colors.white70) : null),
+        suffixIcon: isPasswordField
+            ? IconButton(
+            icon: const Icon(Icons.remove_red_eye, color: Colors.white70),
+            onPressed: () {
+              setState(() {
+                localObscureText = !localObscureText;
+              });
+            })
+            : widget.suffixWidget ??
+            IconButton(
+              onPressed: () {
+                if (keyboardType == TextInputType.number) {
+                  try {
+                    widget.controller.text = '';
+                  } catch (e) {
+                    debugPrint(e.toString());
+                  }
+                } else {
+                  widget.controller.clear();
+                }
+                if (widget.onClear != null) {
+                  widget.onClear!();
+                }
+              },
+              icon: const Icon(Icons.clear, color: Colors.white70),
+            ),
+      ),
+    );
   }
 }
