@@ -72,16 +72,26 @@ class _PakiInputCalendarState extends State<PakiInputCalendar> {
           onShowPicker: (context, dynamic currentValue) async {
             TimeOfDay? dTime;
             DateTime? dDate;
-            isDate
-                ? dDate = (await showDatePicker(
-                    context: context,
-                    initialEntryMode: widget.datePickerEntryMode ?? DatePickerEntryMode.calendar,
-                    firstDate: DateTime(1900),
-                    initialDate: currentValue ?? DateTime.now(),
-                    lastDate: DateTime(2100),
-                    locale: const Locale('pt', 'BR')))!
-                : dTime = (await showTimePicker(initialTime: TimeOfDay.now(), context: context))!;
-            return isDate ? dDate : DateTimeField.convert(dTime);
+
+            if (isDate) {
+              dDate = await showDatePicker(
+                context: context,
+                initialEntryMode: widget.datePickerEntryMode ?? DatePickerEntryMode.calendar,
+                firstDate: DateTime(1900),
+                initialDate: currentValue ?? DateTime.now(),
+                lastDate: DateTime(2100),
+                locale: const Locale('pt', 'BR'),
+              );
+
+              return dDate; // pode retornar null sem erro
+            } else {
+              dTime = await showTimePicker(
+                initialTime: TimeOfDay.now(),
+                context: context,
+              );
+
+              return DateTimeField.convert(dTime); // também pode ser null
+            }
           }),
       const PakiHorizontalDiv()
     ]);
