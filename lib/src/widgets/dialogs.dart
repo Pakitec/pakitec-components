@@ -146,3 +146,46 @@ pakiShowSnackBarErrors(
       duration: const Duration(seconds: 5),
       action: action));
 }
+
+void pakiShowGlobalModal({
+  required BuildContext context,
+  required Widget content,
+  required Color color,
+}) {
+  if (!context.mounted) return;
+
+  showDialog(
+    context: context,
+    barrierDismissible: false, // impede fechar tocando fora
+    builder: (BuildContext dialogContext) {
+      // Timer para fechar após 30 segundos
+      Future.delayed(const Duration(seconds: 30), () {
+        if (Navigator.of(dialogContext).canPop()) {
+          Navigator.of(dialogContext).pop();
+        }
+      });
+
+      return AlertDialog(
+        backgroundColor: color,
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            content,
+            const SizedBox(height: 20),
+            const LinearProgressIndicator(), // barra de progresso
+          ],
+        ),
+        actions: [
+          TextButton(
+            onPressed: () {
+              if (Navigator.of(dialogContext).canPop()) {
+                Navigator.of(dialogContext).pop();
+              }
+            },
+            child: const Text('OK'),
+          ),
+        ],
+      );
+    },
+  );
+}
