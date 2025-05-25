@@ -163,7 +163,7 @@ void pakiShowGlobalModal({
       ValueNotifier<double> progress = ValueNotifier(0);
 
       final int totalMillis = secondsToClose * 1000;
-      final int stepMillis = 100; // atualização a cada 100ms
+      final int stepMillis = 100;
       int elapsedMillis = 0;
 
       Timer.periodic(Duration(milliseconds: stepMillis), (timer) {
@@ -186,7 +186,7 @@ void pakiShowGlobalModal({
           children: [
             DefaultTextStyle(
               style: const TextStyle(
-                fontWeight: FontWeight.w500,
+                fontWeight: FontWeight.bold,
                 color: Colors.white,
                 fontSize: 16,
               ),
@@ -209,14 +209,36 @@ void pakiShowGlobalModal({
               },
             ),
             const SizedBox(height: 20),
-            ValueListenableBuilder<double>(
-              valueListenable: progress,
-              builder: (context, value, _) => LinearProgressIndicator(
-                value: value.clamp(0.0, 1.0),
-                minHeight: 6,
-                backgroundColor: Colors.white.withOpacity(0.2),
-                valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
-              ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                ValueListenableBuilder<double>(
+                  valueListenable: progress,
+                  builder: (context, value, _) => Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      SizedBox(
+                        width: 40,
+                        height: 40,
+                        child: CircularProgressIndicator(
+                          value: value.clamp(0.0, 1.0),
+                          backgroundColor: Colors.white.withOpacity(0.2),
+                          valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                          strokeWidth: 4,
+                        ),
+                      ),
+                      Text(
+                        '${(value * 100).clamp(0, 100).toInt()}%',
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 10,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
             ),
           ],
         ),
