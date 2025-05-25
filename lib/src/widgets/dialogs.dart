@@ -148,6 +148,9 @@ pakiShowSnackBarErrors(
       action: action));
 }
 
+import 'dart:async';
+import 'package:flutter/material.dart';
+
 void pakiShowGlobalModal({
   required BuildContext context,
   required Widget content,
@@ -162,9 +165,8 @@ void pakiShowGlobalModal({
     builder: (BuildContext dialogContext) {
       ValueNotifier<double> progress = ValueNotifier(0);
 
-      // Atualiza progressivamente
       final int totalMillis = secondsToClose * 1000;
-      final int stepMillis = 100; // atualiza a cada 100 ms
+      final int stepMillis = 100; // atualização a cada 100ms
       int elapsedMillis = 0;
 
       Timer.periodic(Duration(milliseconds: stepMillis), (timer) {
@@ -183,8 +185,32 @@ void pakiShowGlobalModal({
         backgroundColor: color,
         content: Column(
           mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            content,
+            DefaultTextStyle(
+              style: const TextStyle(
+                fontWeight: FontWeight.w500,
+                color: Colors.white,
+                fontSize: 16,
+              ),
+              child: content,
+            ),
+            const SizedBox(height: 20),
+            ElevatedButton.icon(
+              style: ElevatedButton.styleFrom(
+                foregroundColor: Colors.white,
+                backgroundColor: Colors.black.withOpacity(0.7),
+                padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+                textStyle: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+              ),
+              icon: const Icon(Icons.check),
+              label: const Text('OK'),
+              onPressed: () {
+                if (Navigator.of(dialogContext).canPop()) {
+                  Navigator.of(dialogContext).pop();
+                }
+              },
+            ),
             const SizedBox(height: 20),
             ValueListenableBuilder<double>(
               valueListenable: progress,
@@ -192,28 +218,11 @@ void pakiShowGlobalModal({
                 value: value.clamp(0.0, 1.0),
                 minHeight: 6,
                 backgroundColor: Colors.white.withOpacity(0.2),
-                valueColor: const AlwaysStoppedAnimation<Color>(Colors.white),
+                valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
               ),
             ),
           ],
         ),
-        actions: [
-          ElevatedButton.icon(
-            style: ElevatedButton.styleFrom(
-              foregroundColor: Colors.white,
-              backgroundColor: Colors.black.withOpacity(0.7),
-              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-              textStyle: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-            ),
-            icon: const Icon(Icons.check),
-            label: const Text('OK'),
-            onPressed: () {
-              if (Navigator.of(dialogContext).canPop()) {
-                Navigator.of(dialogContext).pop();
-              }
-            },
-          ),
-        ],
       );
     },
   );
