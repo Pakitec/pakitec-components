@@ -151,17 +151,30 @@ void pakiShowGlobalModal({
   required BuildContext context,
   required Widget content,
   required Color color,
+  int secondsToClose = 30,
 }) {
   if (!context.mounted) return;
 
   showDialog(
     context: context,
-    barrierDismissible: false, // impede fechar tocando fora
+    barrierDismissible: false,
     builder: (BuildContext dialogContext) {
-      // Timer para fechar após 30 segundos
-      Future.delayed(const Duration(seconds: 30), () {
-        if (Navigator.of(dialogContext).canPop()) {
-          Navigator.of(dialogContext).pop();
+      ValueNotifier<double> progress = ValueNotifier(0);
+
+      // Atualiza progressivamente
+      final int totalMillis = secondsToClose * 1000;
+      final int stepMillis = 100; // atualiza a cada 100 ms
+      int elapsedMillis = 0;
+
+      Timer.periodic(Duration(milliseconds: stepMillis), (timer) {
+        elapsedMillis += stepMillis;
+        progress.value = elapsedMillis / totalMillis;
+
+        if (elapsedMillis >= totalMillis) {
+          timer.cancel();
+          if (Navigator.of(dialogContext).canPop()) {
+            Navigator.of(dialogContext).pop();
+          }
         }
       });
 
@@ -172,17 +185,32 @@ void pakiShowGlobalModal({
           children: [
             content,
             const SizedBox(height: 20),
-            const LinearProgressIndicator(), // barra de progresso
+            ValueListenableBuilder<double>(
+              valueListenable: progress,
+              builder: (context, value, _) => LinearProgressIndicator(
+                value: value.clamp(0.0, 1.0),
+                minHeight: 6,
+                backgroundColor: Colors.white.withOpacity(0.2),
+                valueColor: const AlwaysStoppedAnimation<Color>(Colors.white),
+              ),
+            ),
           ],
         ),
         actions: [
-          TextButton(
+          ElevatedButton.icon(
+            style: ElevatedButton.styleFrom(
+              foregroundColor: Colors.white,
+              backgroundColor: Colors.black.withOpacity(0.7),
+              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+              textStyle: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+            ),
+            icon: const Icon(Icons.check),
+            label: const Text('OK'),
             onPressed: () {
               if (Navigator.of(dialogContext).canPop()) {
                 Navigator.of(dialogContext).pop();
               }
             },
-            child: const Text('OK'),
           ),
         ],
       );
