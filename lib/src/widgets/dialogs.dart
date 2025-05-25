@@ -208,7 +208,7 @@ void pakiShowGlobalModal({
                 }
               },
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 30),
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
@@ -218,8 +218,8 @@ void pakiShowGlobalModal({
                     alignment: Alignment.center,
                     children: [
                       SizedBox(
-                        width: 40,
-                        height: 40,
+                        width: 20,
+                        height: 20,
                         child: CircularProgressIndicator(
                           value: value.clamp(0.0, 1.0),
                           backgroundColor: Colors.white.withOpacity(0.2),
@@ -227,14 +227,14 @@ void pakiShowGlobalModal({
                           strokeWidth: 4,
                         ),
                       ),
-                      Text(
-                        '${(value * 100).clamp(0, 100).toInt()}%',
-                        style: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 10,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
+                      // Text(
+                      //   '${(value * 100).clamp(0, 100).toInt()}%',
+                      //   style: const TextStyle(
+                      //     color: Colors.white,
+                      //     fontSize: 10,
+                      //     fontWeight: FontWeight.bold,
+                      //   ),
+                      // ),
                     ],
                   ),
                 ),
