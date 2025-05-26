@@ -150,7 +150,8 @@ pakiShowSnackBarErrors(
 
 void pakiShowGlobalModal({
   required BuildContext context,
-  required Widget content,
+  required String title,
+  required String message,
   required Color color,
   int secondsToClose = 30,
   IconData iconData = Icons.warning,
@@ -180,71 +181,83 @@ void pakiShowGlobalModal({
       });
 
       return AlertDialog(
-        backgroundColor: color,
+        backgroundColor: color.withOpacity(0.9),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(16),
+        ),
+        contentPadding: const EdgeInsets.all(24),
         content: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Icon(
+            Center(
+              child: CircleAvatar(
+                backgroundColor: Colors.white.withOpacity(0.2),
+                radius: 30,
+                child: Icon(
                   iconData,
+                  size: 32,
                   color: Colors.white,
-                  size: 28,
                 ),
-                const SizedBox(width: 12),
-                Expanded(
-                  child: DefaultTextStyle(
-                    style: const TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                      fontSize: 16,
-                    ),
-                    child: content,
-                  ),
-                ),
-              ],
-            ),
-            const SizedBox(height: 20),
-            ElevatedButton.icon(
-              style: ElevatedButton.styleFrom(
-                foregroundColor: Colors.white,
-                backgroundColor: Colors.black.withOpacity(0.7),
-                padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-                textStyle: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
               ),
-              icon: const Icon(Icons.check),
-              label: const Text('OK'),
+            ),
+            const SizedBox(height: 16),
+            Text(
+              title,
+              textAlign: TextAlign.center,
+              style: const TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+              ),
+            ),
+            const SizedBox(height: 12),
+            Text(
+              message,
+              textAlign: TextAlign.center,
+              style: const TextStyle(
+                fontSize: 16,
+                color: Colors.white,
+              ),
+            ),
+            const SizedBox(height: 24),
+            TextButton(
+              style: TextButton.styleFrom(
+                foregroundColor: Colors.white,
+                backgroundColor: Colors.black.withOpacity(0.3),
+                padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8),
+                ),
+              ),
               onPressed: () {
                 if (Navigator.of(dialogContext).canPop()) {
                   Navigator.of(dialogContext).pop();
                 }
               },
+              child: const Text(
+                'OK',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
             ),
-            const SizedBox(height: 30),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                ValueListenableBuilder<double>(
-                  valueListenable: progress,
-                  builder: (context, value, _) => Stack(
-                    alignment: Alignment.center,
-                    children: [
-                      SizedBox(
-                        width: 20,
-                        height: 20,
-                        child: CircularProgressIndicator(
-                          value: value.clamp(0.0, 1.0),
-                          backgroundColor: Colors.white.withOpacity(0.2),
-                          valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
-                          strokeWidth: 4,
-                        ),
-                      ),
-                    ],
+            const SizedBox(height: 16),
+            Align(
+              alignment: Alignment.bottomRight,
+              child: ValueListenableBuilder<double>(
+                valueListenable: progress,
+                builder: (context, value, _) => SizedBox(
+                  width: 24,
+                  height: 24,
+                  child: CircularProgressIndicator(
+                    value: value.clamp(0.0, 1.0),
+                    backgroundColor: Colors.white.withOpacity(0.2),
+                    valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                    strokeWidth: 3,
                   ),
                 ),
-              ],
+              ),
             ),
           ],
         ),
