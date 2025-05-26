@@ -153,6 +153,7 @@ void pakiShowGlobalModal({
   required Widget content,
   required Color color,
   int secondsToClose = 30,
+  IconData iconData = Icons.warning,
 }) {
   if (!context.mounted) return;
 
@@ -184,13 +185,26 @@ void pakiShowGlobalModal({
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            DefaultTextStyle(
-              style: const TextStyle(
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
-                fontSize: 16,
-              ),
-              child: content,
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Icon(
+                  iconData,
+                  color: Colors.white,
+                  size: 28,
+                ),
+                const SizedBox(width: 12),
+                Expanded(
+                  child: DefaultTextStyle(
+                    style: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                      fontSize: 16,
+                    ),
+                    child: content,
+                  ),
+                ),
+              ],
             ),
             const SizedBox(height: 20),
             ElevatedButton.icon(
@@ -227,14 +241,6 @@ void pakiShowGlobalModal({
                           strokeWidth: 4,
                         ),
                       ),
-                      // Text(
-                      //   '${(value * 100).clamp(0, 100).toInt()}%',
-                      //   style: const TextStyle(
-                      //     color: Colors.white,
-                      //     fontSize: 10,
-                      //     fontWeight: FontWeight.bold,
-                      //   ),
-                      // ),
                     ],
                   ),
                 ),
