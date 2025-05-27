@@ -155,6 +155,7 @@ void pakiShowGlobalModal({
   required Color color,
   int secondsToClose = 30,
   IconData iconData = Icons.warning,
+  Function()? onOk,
 }) {
   if (!context.mounted) return;
 
@@ -176,6 +177,7 @@ void pakiShowGlobalModal({
           timer.cancel();
           if (Navigator.of(dialogContext).canPop()) {
             Navigator.of(dialogContext).pop();
+            onOk?.call();
           }
         }
       });
@@ -233,6 +235,7 @@ void pakiShowGlobalModal({
               onPressed: () {
                 if (Navigator.of(dialogContext).canPop()) {
                   Navigator.of(dialogContext).pop();
+                  onOk?.call();
                 }
               },
               child: const Text(
