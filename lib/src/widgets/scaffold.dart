@@ -12,6 +12,7 @@ class PakiScaffold extends StatefulWidget {
   final Widget? floatingActionButton;
   final Widget? drawer;
   final Widget? bottomNavigationBar;
+  final Color? backgroundColor;
 
   // final bool? showSideMenu;
 
@@ -26,7 +27,9 @@ class PakiScaffold extends StatefulWidget {
       this.widgetButton,
       this.floatingActionButton,
       this.drawer,
-        this.bottomNavigationBar}) : super(key: key);
+      this.bottomNavigationBar,
+      this.backgroundColor})
+      : super(key: key);
 
   @override
   State<PakiScaffold> createState() => _PakiScaffoldState();
@@ -37,10 +40,10 @@ class _PakiScaffoldState extends State<PakiScaffold> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-            title: widget.widgetLabel ?? Text(widget.label!),
+            title: widget.widgetLabel ?? Text(widget.label ?? ''),
             centerTitle: true,
             elevation: 0.0,
-            backgroundColor: pakiDefaultSecondaryColor,
+            backgroundColor: widget.backgroundColor ?? pakiDefaultSecondaryColor,
             actions: [
               widget.widgetButton != null ? widget.widgetButton! : Container(),
               widget.onConfirm != null
