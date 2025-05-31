@@ -13,6 +13,7 @@ class PakiScaffold extends StatefulWidget {
   final Widget? drawer;
   final Widget? bottomNavigationBar;
   final Color? backgroundColor;
+  final BoxDecoration? boxDecoration;
 
   // final bool? showSideMenu;
 
@@ -28,7 +29,8 @@ class PakiScaffold extends StatefulWidget {
       this.floatingActionButton,
       this.drawer,
       this.bottomNavigationBar,
-      this.backgroundColor})
+      this.backgroundColor,
+      this.boxDecoration})
       : super(key: key);
 
   @override
@@ -56,7 +58,7 @@ class _PakiScaffoldState extends State<PakiScaffold> {
         body: Form(
             key: widget.formKey,
             child: Container(
-                decoration: pakiDefaultBoxDecoration,
+                decoration: widget.boxDecoration ?? pakiDefaultBoxDecoration,
                 child: Column(children: [
                   widget.head != null ? Container(padding: const EdgeInsets.all(5), child: widget.head) : Container(),
                   Expanded(child: widget.body ?? Container())
