@@ -5,6 +5,7 @@ import 'compass_indicator.dart';
 import 'dialogs.dart';
 import 'divider.dart';
 
+@Deprecated('Não usar esse componente temporariamente')
 class PakiInputZipCode extends StatefulWidget {
   final String name;
   final IconData? prefixIcon;
