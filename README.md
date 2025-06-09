@@ -1,39 +1,102 @@
-<!-- 
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
 
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/guides/libraries/writing-package-pages). 
+# Pakitec Components
 
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-library-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/developing-packages). 
--->
+Pacote de componentes visuais reutilizáveis criado pela equipe da Pakitec, com foco em produtividade, consistência visual e facilidade de integração em projetos Flutter.
 
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+> 💡 Este pacote é privado e não está publicado no pub.dev. Para uso interno e por times autorizados.
 
-## Features
+---
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+## ✨ Principais recursos
 
-## Getting started
+- Conjunto de widgets prontos para uso: botões, campos de entrada, indicadores, diálogos, scaffold, e muito mais.
+- Padronização visual com suporte ao tema Pakitec (`pakitec_themes`)
+- Compatível com Flutter Web, Mobile e Desktop
+- Documentação interativa via [Dashbook](https://pub.dev/packages/dashbook)
 
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+---
 
-## Usage
+## 🚀 Começando
 
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder. 
+### Pré-requisitos
 
-```dart
-const like = 'sample';
+- Flutter SDK 3.10 ou superior
+- Acesso ao repositório privado da Pakitec
+- Adicionado como dependência via Git:
+
+```yaml
+dependencies:
+  pakitec_components:
+    git:
+      url: https://github.com/Pakitec/pakitec-components.git
 ```
 
-## Additional information
+---
 
-TODO: Tell users more about the package: where to find more information, how to 
-contribute to the package, how to file issues, what response they can expect 
-from the package authors, and more.
+## 📦 Estrutura
+
+Este pacote oferece os seguintes componentes:
+
+- `PakiButton`
+
+
+> Todos estão localizados em `lib/src/widgets/`.
+
+---
+
+## 🧪 Demonstração interativa (Dashbook)
+
+Você pode visualizar e testar os componentes individualmente com controle dinâmico de propriedades.
+
+### Executar localmente:
+
+```bash
+flutter pub get
+flutter run -d chrome -t example/main_dashbook.dart
+```
+
+---
+
+## 🛠 Exemplo de uso
+
+`dart
+PakiButton(
+  text: 'Enviar',
+  iconData: Icons.send,
+  onPressed: () => print('Enviado'),
+  width: 160,
+  height: 50,
+)
+`
+
+---
+
+## 🎨 Tema escuro e claro
+
+O pacote suporta alternância entre tema escuro e claro usando `Dashbook.dualTheme`. Os componentes se adaptam automaticamente ao tema ativo via `Theme.of(context)`.
+
+---
+
+## 📚 Documentação
+
+- Exemplos práticos no diretório [`example/`](example/)
+- Cada componente pode ser testado e copiado diretamente da interface do Dashbook
+- É possível exibir o código gerado e copiá-lo para uso
+
+---
+
+## 🤝 Contribuindo
+
+Contribuições são bem-vindas! Para colaborar:
+
+1. Crie uma branch com sua feature/fix
+2. Mantenha o padrão de código e organização
+3. Faça um PR com uma descrição clara
+
+---
+
+## 🧾 Licença
+
+Este pacote é de uso interno da **Pakitec Tecnologia** e está licenciado apenas para projetos autorizados.
+
+---

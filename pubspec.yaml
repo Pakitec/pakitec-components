@@ -1,6 +1,6 @@
 name: pakitec_components
 description: components from pakitec devs
-version: 1.0.32
+version: 1.0.33
 homepage: 'www.pakitec.com.br'
 publish_to: none
 
@@ -29,6 +29,7 @@ dependencies:
   cupertino_icons: ^1.0.2
 
 dev_dependencies:
+  dashbook: ^0.1.17
   flutter_test:
     sdk: flutter
 
