@@ -18,6 +18,7 @@ class PakiInputField extends StatefulWidget {
   final Function()? onFocusOut; // Callback quando o foco sai do campo
   final Function()? onFocusIn; // Novo callback quando o foco entra no campo
   final int? maxLines;
+  final int? maxLength;
   final TextAlign? textAlign;
   final String? hint;
   final IconData? prefixIcon;
@@ -44,6 +45,7 @@ class PakiInputField extends StatefulWidget {
     this.onFocusOut, // Adicionado na versão anterior
     this.onFocusIn, // Novo callback
     this.maxLines,
+    this.maxLength,
     this.textAlign,
     this.hint,
     this.prefixIcon,
@@ -129,6 +131,7 @@ class _PakiInputFieldState extends State<PakiInputField> {
       onFieldSubmitted: widget.onFieldSubmitted,
       onEditingComplete: widget.onEditingComplete,
       maxLines: maxLines,
+      maxLength: widget.maxLength ?? TextField.noMaxLength,
       controller: widget.controller,
       focusNode: _focusNode, // Adiciona o FocusNode para detectar foco
       enabled: isEnabled,
