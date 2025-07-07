@@ -139,9 +139,12 @@ class _PakiInputFieldState extends State<PakiInputField> {
             required bool isFocused,
             required int? maxLength,
           }) {
-        return (widget.maxLength ?? 0) > 0
-            ? null // Usa o contador padrão
-            : const SizedBox.shrink(); // Esconde se for zero ou nulo
+        if ((widget.maxLength ?? -1) > 0) {
+          return Text('$currentLength / ${widget.maxLength}',
+              style: Theme.of(context).textTheme.bodySmall);
+        } else {
+          return const SizedBox.shrink(); // Oculta o contador
+        }
       },
       controller: widget.controller,
       focusNode: _focusNode, // Adiciona o FocusNode para detectar foco
