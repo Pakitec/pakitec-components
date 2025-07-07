@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:pakitec_themes/pakitec_themes.dart';
 import 'divider.dart';
 
@@ -132,6 +133,16 @@ class _PakiInputFieldState extends State<PakiInputField> {
       onEditingComplete: widget.onEditingComplete,
       maxLines: maxLines,
       maxLength: widget.maxLength ?? TextField.noMaxLength,
+      buildCounter: (
+          BuildContext context, {
+            required int currentLength,
+            required bool isFocused,
+            required int? maxLength,
+          }) {
+        return (widget.maxLength ?? 0) > 0
+            ? null // Usa o contador padrão
+            : const SizedBox.shrink(); // Esconde se for zero ou nulo
+      },
       controller: widget.controller,
       focusNode: _focusNode, // Adiciona o FocusNode para detectar foco
       enabled: isEnabled,
