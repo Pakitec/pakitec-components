@@ -125,66 +125,63 @@ class _PakiInputFieldState extends State<PakiInputField> {
 
   Widget _textFormField() {
     return TextFormField(
-      autofillHints: isEnabled ? widget.autoFillHints ?? const Iterable.empty() : null,
-      validator: widget.customValidator ?? _validator,
-      onChanged: widget.onChanged,
-      onSaved: widget.onSaved,
-      onFieldSubmitted: widget.onFieldSubmitted,
-      onEditingComplete: widget.onEditingComplete,
-      maxLines: maxLines,
-      maxLength: widget.maxLength ?? TextField.noMaxLength,
-      buildCounter: (
+        autofillHints: isEnabled ? widget.autoFillHints ?? const Iterable.empty() : null,
+        validator: widget.customValidator ?? _validator,
+        onChanged: widget.onChanged,
+        onSaved: widget.onSaved,
+        onFieldSubmitted: widget.onFieldSubmitted,
+        onEditingComplete: widget.onEditingComplete,
+        maxLines: maxLines,
+        maxLength: widget.maxLength ?? TextField.noMaxLength,
+        buildCounter: (
           BuildContext context, {
-            required int currentLength,
-            required bool isFocused,
-            required int? maxLength,
-          }) {
-        if ((widget.maxLength ?? -1) > 0) {
-          return Text('$currentLength / ${widget.maxLength}',
-              style: Theme.of(context).textTheme.bodySmall);
-        } else {
-          return const SizedBox.shrink(); // Oculta o contador
-        }
-      },
-      controller: widget.controller,
-      focusNode: _focusNode, // Adiciona o FocusNode para detectar foco
-      enabled: isEnabled,
-      keyboardType: keyboardType,
-      textAlign: textAlign,
-      obscureText: isPasswordField ? localObscureText : obscureText,
-      style: const TextStyle(color: pakiDefaultPrimaryColor),
-      decoration: InputDecoration(
-        labelText: widget.name,
-        hintText: widget.hint,
-        prefixIcon: widget.prefixWidget ??
-            (widget.prefixIcon != null ? Icon(widget.prefixIcon, color: Colors.white70) : null),
-        suffixIcon: !isEnabled ? Container() :(isPasswordField
-            ? IconButton(
-            icon: const Icon(Icons.remove_red_eye, color: Colors.white70),
-            onPressed: () {
-              setState(() {
-                localObscureText = !localObscureText;
-              });
-            })
-            : widget.suffixWidget ??
-            IconButton(
-              onPressed: () {
-                if (keyboardType == TextInputType.number) {
-                  try {
-                    widget.controller.text = '';
-                  } catch (e) {
-                    debugPrint(e.toString());
-                  }
-                } else {
-                  widget.controller.clear();
-                }
-                if (widget.onClear != null) {
-                  widget.onClear!();
-                }
-              },
-              icon: const Icon(Icons.clear, color: Colors.white70),
-            )
-      )
-    ));
+          required int currentLength,
+          required bool isFocused,
+          required int? maxLength,
+        }) {
+          if ((widget.maxLength ?? -1) > 0) {
+            return Text('$currentLength / ${widget.maxLength}', style: Theme.of(context).textTheme.bodySmall);
+          } else {
+            return const SizedBox.shrink(); // Oculta o contador
+          }
+        },
+        controller: widget.controller,
+        focusNode: _focusNode,
+        // Adiciona o FocusNode para detectar foco
+        enabled: isEnabled,
+        keyboardType: keyboardType,
+        textAlign: textAlign,
+        obscureText: isPasswordField ? localObscureText : obscureText,
+        style: const TextStyle(color: pakiDefaultPrimaryColor),
+        decoration: InputDecoration(
+            labelText: widget.name,
+            hintText: widget.hint,
+            prefixIcon: widget.prefixWidget ??
+                (widget.prefixIcon != null ? Icon(widget.prefixIcon, color: Colors.white70) : null),
+            suffixIcon: isPasswordField
+                ? IconButton(
+                    icon: const Icon(Icons.remove_red_eye, color: Colors.white70),
+                    onPressed: () {
+                      setState(() {
+                        localObscureText = !localObscureText;
+                      });
+                    })
+                : widget.suffixWidget ??
+                    IconButton(
+                        onPressed: () {
+                          if (keyboardType == TextInputType.number) {
+                            try {
+                              widget.controller.text = '';
+                            } catch (e) {
+                              debugPrint(e.toString());
+                            }
+                          } else {
+                            widget.controller.clear();
+                          }
+                          if (widget.onClear != null) {
+                            widget.onClear!();
+                          }
+                        },
+                        icon: Icon(Icons.clear, color: isEnabled ? Colors.white70 : Colors.transparent))));
   }
 }
