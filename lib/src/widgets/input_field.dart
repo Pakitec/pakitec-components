@@ -158,7 +158,7 @@ class _PakiInputFieldState extends State<PakiInputField> {
         hintText: widget.hint,
         prefixIcon: widget.prefixWidget ??
             (widget.prefixIcon != null ? Icon(widget.prefixIcon, color: Colors.white70) : null),
-        suffixIcon: isPasswordField
+        suffixIcon: !isEnabled ? Container() :(isPasswordField
             ? IconButton(
             icon: const Icon(Icons.remove_red_eye, color: Colors.white70),
             onPressed: () {
@@ -183,8 +183,8 @@ class _PakiInputFieldState extends State<PakiInputField> {
                 }
               },
               icon: const Icon(Icons.clear, color: Colors.white70),
-            ),
-      ),
-    );
+            )
+      )
+    ));
   }
 }
