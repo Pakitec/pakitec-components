@@ -3,6 +3,7 @@ import 'package:dashbook/dashbook.dart';
 import 'package:pakitec_components/pakitec_components.dart';
 import 'package:pakitec_components/src/widgets/button.dart';
 import 'package:pakitec_components/src/widgets/checkbox.dart';
+import 'package:pakitec_components/src/widgets/color_picker.dart';
 import 'package:pakitec_components/src/widgets/combo_field.dart';
 import 'package:pakitec_components/src/widgets/compass_indicator.dart';
 import 'package:pakitec_components/src/widgets/container.dart';
@@ -130,6 +131,28 @@ void main() {
         showSearchBox: showSearch,
         removeHorizontalDiv: removeDivider,
         onSelect: (value) => print('Selected value: \$value'),
+      ),
+    );
+  });
+
+  dashbook.storiesOf('PakiColorPicker').add('Example', (ctx) {
+    final initialColor = ctx.textProperty('Cor inicial', '#FF0000');
+    final controller = TextEditingController(text: initialColor);
+
+    final example = '''
+        PakiColorPicker(
+          controller: TextEditingController(text: '$initialColor'),
+          currentColor: '$initialColor',
+          onChanged: (value) {},
+        )
+        ''';
+
+    return GenerateComponent(
+      example: example,
+      component: PakiColorPicker(
+        controller: controller,
+        currentColor: initialColor,
+        onChanged: (value) => print('Cor selecionada: \\$value'),
       ),
     );
   });
