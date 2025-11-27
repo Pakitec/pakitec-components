@@ -3,55 +3,6 @@ import 'package:pakitec_themes/pakitec_themes.dart';
 import 'divider.dart';
 import 'dart:async';
 
-// pakiShowQuestionYesNo(
-//     {required BuildContext context,
-//     required String message,
-//     required Function() onConfirm,
-//     required Function() onCancel,
-//     bool? isLoading,
-//     bool? needsConfirm}) {
-//   needsConfirm ??= true;
-//   isLoading ??= false;
-//
-//   if (!needsConfirm) {
-//     onConfirm();
-//   } else {
-//     Widget yes = isLoading
-//         ? const Center(child: CircularProgressIndicator())
-//         : TextButton(
-//             style: ButtonStyle(backgroundColor: MaterialStateProperty.all(pakiDefaultButtonColor)),
-//             onPressed: onConfirm,
-//             child: const Text('Sim', style: TextStyle(color: Colors.white)));
-//     Widget no = isLoading
-//         ? const Center(child: CircularProgressIndicator())
-//         : TextButton(
-//             style: ButtonStyle(backgroundColor: MaterialStateProperty.all(pakiDefaultButtonColor)),
-//             onPressed: onCancel,
-//             child: const Text('Não', style: TextStyle(color: Colors.white)));
-//     AlertDialog alert = AlertDialog(
-//         title: const Column(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
-//           Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-//             Text('Atenção'),
-//             PakiVerticalDiv(width: 5.0),
-//             Icon(Icons.info),
-//           ]),
-//           PakiHorizontalDiv(height: 15.0),
-//           Divider(height: 1.0, color: Colors.white)
-//         ]),
-//         content: Text(message),
-//         actions: [yes, no],
-//         backgroundColor: pakiDefaultSecondaryColor);
-//
-//     if (!context.mounted) return;
-//     showDialog(
-//         context: context,
-//
-//         builder: (BuildContext context) {
-//           return alert;
-//         });
-//   }
-// }
-
 void pakiShowQuestionYesNo({
   required BuildContext context,
   required String message,
