@@ -18,6 +18,7 @@ import 'package:pakitec_components/src/widgets/input_zip_code.dart';
 import 'package:pakitec_components/src/widgets/print_button.dart';
 import 'package:pakitec_components/src/widgets/scaffold.dart';
 import 'package:pakitec_components/src/widgets/skeleton_indicator.dart';
+import 'package:pakitec_components/src/widgets/new_badge.dart';
 
 import 'generate_component.dart';
 
@@ -127,6 +128,32 @@ void main() {
         showSearchBox: showSearch,
         removeHorizontalDiv: removeDivider,
         onSelect: (value) => print('Selected value: \$value'),
+      ),
+    );
+  });
+
+  dashbook.storiesOf('PakiNewBadge').add('Example', (ctx) {
+    final tooltipText = ctx.textProperty('Tooltip', 'Novo recurso disponível');
+    final example = '''
+        PakiNewBadge(
+          tooltip: '$tooltipText',
+          child: const PakiButton(
+            text: 'Ação',
+            iconData: Icons.new_releases,
+            onPressed: null,
+          ),
+        )
+        ''';
+
+    return GenerateComponent(
+      example: example,
+      component: PakiNewBadge(
+        tooltip: tooltipText,
+        child: PakiButton(
+          text: 'Ação',
+          iconData: Icons.new_releases,
+          onPressed: (){},
+        ),
       ),
     );
   });

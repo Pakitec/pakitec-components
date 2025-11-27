@@ -17,4 +17,5 @@ export '/src/widgets/indicator.dart';
 export '/src/widgets/scaffold.dart';
 export '/src/widgets/checkbox.dart';
 export '/src/widgets/color_picker.dart';
+export '/src/widgets/new_badge.dart';
 
