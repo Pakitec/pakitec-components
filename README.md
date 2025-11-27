@@ -38,6 +38,7 @@ dependencies:
 Este pacote oferece os seguintes componentes:
 
 - `PakiButton`
+- `PakiNewBadge`
 
 
 > Todos estão localizados em `lib/src/widgets/`.
