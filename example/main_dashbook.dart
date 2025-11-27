@@ -149,10 +149,10 @@ void main() {
       example: example,
       component: PakiNewBadge(
         tooltip: tooltipText,
-        child: const PakiButton(
+        child: PakiButton(
           text: 'Ação',
           iconData: Icons.new_releases,
-          onPressed: null,
+          onPressed: (){},
         ),
       ),
     );

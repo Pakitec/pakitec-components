@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import '../services/zip_service.dart';
 import 'package:pakitec_themes/pakitec_themes.dart';
-import 'compass_indicator.dart';
 import 'dialogs.dart';
 import 'divider.dart';
 
