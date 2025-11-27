@@ -9,6 +9,7 @@ class PakiNewBadge extends StatelessWidget {
   final BorderRadius badgeBorderRadius;
   final IconData icon;
   final double iconSize;
+  final DateTime? showUntil;
 
   const PakiNewBadge({
     Key? key,
@@ -19,10 +20,18 @@ class PakiNewBadge extends StatelessWidget {
     this.badgeBorderRadius = const BorderRadius.all(Radius.circular(12)),
     this.icon = Icons.star,
     this.iconSize = 12,
+    this.showUntil,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final hideBadge =
+        showUntil != null && DateTime.now().isAfter(showUntil!.toLocal());
+
+    if (hideBadge) {
+      return child;
+    }
+
     final shadow = pakiDefaultBoxDecoration.boxShadow;
 
     return Stack(
