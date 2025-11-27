@@ -175,7 +175,7 @@ void pakiShowGlobalModal({
 
         if (elapsedMillis >= totalMillis) {
           timer.cancel();
-          if (Navigator.of(dialogContext).canPop()) {
+          if (dialogContext.mounted && Navigator.of(dialogContext).canPop()) {
             Navigator.of(dialogContext).pop();
             onOk?.call();
           }
