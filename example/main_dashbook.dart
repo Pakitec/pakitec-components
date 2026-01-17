@@ -159,9 +159,14 @@ void main() {
 
   dashbook.storiesOf('PakiNewBadge').add('Example', (ctx) {
     final tooltipText = ctx.textProperty('Tooltip', 'Novo recurso disponível');
+    final badgeExpired = ctx.boolProperty('Badge expirado', false);
+    final showUntil = badgeExpired
+        ? DateTime.now().subtract(const Duration(days: 1))
+        : DateTime.now().add(const Duration(days: 1));
     final example = '''
         PakiNewBadge(
           tooltip: '$tooltipText',
+          showUntil: DateTime.now().add(const Duration(days: 1)),
           child: const PakiButton(
             text: 'Ação',
             iconData: Icons.new_releases,
@@ -174,6 +179,7 @@ void main() {
       example: example,
       component: PakiNewBadge(
         tooltip: tooltipText,
+        showUntil: showUntil,
         child: PakiButton(
           text: 'Ação',
           iconData: Icons.new_releases,
