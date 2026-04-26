@@ -1,0 +1,12 @@
+{
+  "name": "Componentes Pakitec",
+  "short_name": "Pakitec Components",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#FFFFFF",
+  "theme_color": "#1976D2",
+  "description": "Playbook visual dos componentes Pakitec.",
+  "orientation": "portrait-primary",
+  "prefer_related_applications": false,
+  "icons": []
+}

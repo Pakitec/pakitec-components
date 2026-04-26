@@ -49,6 +49,16 @@ Este pacote oferece os seguintes componentes:
 
 Você pode visualizar e testar os componentes individualmente com controle dinâmico de propriedades.
 
+### GitHub Pages
+
+O playbook é publicado automaticamente no GitHub Pages a cada push na branch `master` pelo workflow [`deploy_playbook_pages.yml`](.github/workflows/deploy_playbook_pages.yml).
+
+URL esperada:
+
+```text
+https://pakitec.github.io/pakitec-components/
+```
+
 ### Executar localmente:
 
 ```bash
