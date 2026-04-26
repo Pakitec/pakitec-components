@@ -31,7 +31,7 @@ jobs:
         run: flutter pub get
 
       - name: Build do playbook
-        run: flutter build web --target example/main_dashbook.dart --base-href /pakitec-components/
+        run: flutter build web --target example/main_dashbook.dart --base-href /
 
       - name: Configurar Pages
         uses: actions/configure-pages@v5

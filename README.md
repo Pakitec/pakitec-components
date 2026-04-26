@@ -56,7 +56,7 @@ O playbook é publicado automaticamente no GitHub Pages a cada push na branch `m
 URL esperada:
 
 ```text
-https://pakitec.github.io/pakitec-components/
+https://flutter-components.pakitec.com.br/
 ```
 
 ### Executar localmente:

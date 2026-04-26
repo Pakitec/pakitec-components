@@ -183,7 +183,7 @@ void main() {
         child: PakiButton(
           text: 'Ação',
           iconData: Icons.new_releases,
-          onPressed: (){},
+          onPressed: () {},
         ),
       ),
     );
@@ -283,7 +283,8 @@ void main() {
 
   dashbook.storiesOf('PakiDivider').add('Example', (ctx) {
     final verticalWidth = ctx.numberProperty('Largura do divisor vertical', 20);
-    final horizontalHeight = ctx.numberProperty('Altura do divisor horizontal', 20);
+    final horizontalHeight =
+        ctx.numberProperty('Altura do divisor horizontal', 20);
 
     final example = '''
         Column(
@@ -516,6 +517,390 @@ void main() {
       component: SizedBox(
         height: 300,
         child: PakiSkeletonIndicator(),
+      ),
+    );
+  });
+
+  dashbook.storiesOf('PakiButton').add('Galeria', (ctx) {
+    const example = '''
+        Wrap(
+          spacing: 12,
+          runSpacing: 12,
+          children: [
+            PakiButton(text: 'Adicionar', iconData: Icons.add, onPressed: () {}),
+            PakiButton(text: 'Salvar', iconData: Icons.save, onPressed: () {}),
+            PakiButton(text: 'Confirmar', iconData: Icons.check, onPressed: () {}),
+            PakiButton(text: 'Excluir', iconData: Icons.delete, onPressed: () {}),
+          ],
+        )
+        ''';
+
+    return GenerateComponent(
+      example: example,
+      component: Wrap(
+        alignment: WrapAlignment.center,
+        spacing: 12,
+        runSpacing: 12,
+        children: [
+          PakiButton(text: 'Adicionar', iconData: Icons.add, onPressed: _noop),
+          PakiButton(text: 'Salvar', iconData: Icons.save, onPressed: _noop),
+          PakiButton(
+              text: 'Confirmar', iconData: Icons.check, onPressed: _noop),
+          PakiButton(text: 'Excluir', iconData: Icons.delete, onPressed: _noop),
+          PakiButton(
+              text: 'Pequeno',
+              iconData: Icons.tune,
+              width: 120,
+              height: 40,
+              onPressed: _noop),
+          PakiButton(
+              text: 'Largo',
+              iconData: Icons.open_in_full,
+              width: 220,
+              height: 56,
+              onPressed: _noop),
+        ],
+      ),
+    );
+  });
+
+  dashbook.storiesOf('PakiInputField').add('Variações', (ctx) {
+    const example = '''
+        Column(
+          children: [
+            PakiInputField(name: 'Nome', controller: TextEditingController(), prefixIcon: Icons.person),
+            PakiInputField(name: 'E-mail', controller: TextEditingController(), keyboardType: TextInputType.emailAddress),
+            PakiInputField(name: 'Senha', controller: TextEditingController(), isPasswordField: true),
+            PakiInputField(name: 'Observações', controller: TextEditingController(), maxLines: 3),
+          ],
+        )
+        ''';
+
+    return GenerateComponent(
+      example: example,
+      component: Column(
+        children: [
+          PakiInputField(
+            name: 'Nome',
+            controller: TextEditingController(text: 'Maria Oliveira'),
+            prefixIcon: Icons.person,
+            hint: 'Nome completo',
+          ),
+          PakiInputField(
+            name: 'E-mail',
+            controller: TextEditingController(text: 'maria@pakitec.com.br'),
+            keyboardType: TextInputType.emailAddress,
+            prefixIcon: Icons.email,
+            textAlign: TextAlign.left,
+          ),
+          PakiInputField(
+            name: 'Senha',
+            controller: TextEditingController(text: 'segredo123'),
+            isPasswordField: true,
+            prefixIcon: Icons.lock,
+          ),
+          PakiInputField(
+            name: 'Observações',
+            controller: TextEditingController(
+                text: 'Campo com múltiplas linhas para textos maiores.'),
+            maxLines: 3,
+            maxLength: 120,
+            textAlign: TextAlign.left,
+            prefixIcon: Icons.notes,
+          ),
+          PakiInputField(
+            name: 'Desabilitado',
+            controller: TextEditingController(text: 'Não editável'),
+            isEnabled: false,
+            prefixIcon: Icons.block,
+          ),
+        ],
+      ),
+    );
+  });
+
+  dashbook.storiesOf('PakiInputCalendar').add('Data e hora', (ctx) {
+    const example = '''
+        Row(
+          children: [
+            Expanded(child: PakiInputCalendar(name: 'Data', controller: TextEditingController(), isDate: true, onChanged: (_) {})),
+            Expanded(child: PakiInputCalendar(name: 'Hora', controller: TextEditingController(), isDate: false, onChanged: (_) {})),
+          ],
+        )
+        ''';
+
+    return GenerateComponent(
+      example: example,
+      component: Row(
+        children: [
+          Expanded(
+            child: PakiInputCalendar(
+              name: 'Data',
+              controller: TextEditingController(text: '26/04/2026'),
+              isDate: true,
+              prefixIcon: Icons.event,
+              onChanged: (value) => print('Data: \$value'),
+            ),
+          ),
+          const SizedBox(width: 16),
+          Expanded(
+            child: PakiInputCalendar(
+              name: 'Hora',
+              controller: TextEditingController(text: '14:30'),
+              isDate: false,
+              prefixIcon: Icons.schedule,
+              onChanged: (value) => print('Hora: \$value'),
+            ),
+          ),
+        ],
+      ),
+    );
+  });
+
+  dashbook.storiesOf('PakiComboField').add('Listas', (ctx) {
+    const example = '''
+        Column(
+          children: [
+            PakiComboField(label: 'Status', list: ['Ativo', 'Pendente', 'Bloqueado'], selectedValue: 'Ativo', onSelect: (_) {}),
+            PakiComboField(label: 'Categoria', list: ['Financeiro', 'Operação', 'Comercial'], onSelect: (_) {}),
+          ],
+        )
+        ''';
+
+    return GenerateComponent(
+      example: example,
+      component: Column(
+        children: [
+          PakiComboField(
+            label: 'Status',
+            list: const ['Ativo', 'Pendente', 'Bloqueado'],
+            selectedValue: 'Ativo',
+            onSelect: (value) => print('Status: \$value'),
+          ),
+          PakiComboField(
+            label: 'Categoria',
+            list: const ['Financeiro', 'Operação', 'Comercial', 'Suporte'],
+            selectedValue: 'Operação',
+            onSelect: (value) => print('Categoria: \$value'),
+          ),
+        ],
+      ),
+    );
+  });
+
+  dashbook.storiesOf('PakiIndicator').add('Status', (ctx) {
+    const example = '''
+        Wrap(
+          spacing: 16,
+          runSpacing: 12,
+          children: [
+            PakiIndicator(text: 'Ativo', isSquare: false, color: Colors.green),
+            PakiIndicator(text: 'Pendente', isSquare: false, color: Colors.orange),
+            PakiIndicator(text: 'Bloqueado', isSquare: false, color: Colors.red),
+          ],
+        )
+        ''';
+
+    return const GenerateComponent(
+      example: example,
+      component: Wrap(
+        alignment: WrapAlignment.center,
+        spacing: 16,
+        runSpacing: 12,
+        children: [
+          PakiIndicator(text: 'Ativo', isSquare: false, color: Colors.green),
+          PakiIndicator(
+              text: 'Pendente', isSquare: false, color: Colors.orange),
+          PakiIndicator(text: 'Bloqueado', isSquare: false, color: Colors.red),
+          PakiIndicator(
+              text: 'Novo', isSquare: true, color: Colors.blue, size: 18),
+          PakiIndicator(
+              text: 'Arquivado', isSquare: true, color: Colors.grey, size: 18),
+        ],
+      ),
+    );
+  });
+
+  dashbook.storiesOf('PakiImageBackground').add('Estados vazios', (ctx) {
+    const example = '''
+        Row(
+          children: [
+            Expanded(child: PakiImageBackground(url: 'assets/images/bermuda-no-data.png', text: 'Nenhum dado')),
+            Expanded(child: PakiImageBackground(url: 'assets/images/bermuda_error.png', text: 'Erro ao carregar')),
+          ],
+        )
+        ''';
+
+    return const GenerateComponent(
+      example: example,
+      component: SizedBox(
+        height: 320,
+        child: Row(
+          children: [
+            Expanded(
+                child: PakiImageBackground(
+                    url: 'assets/images/bermuda-no-data.png',
+                    text: 'Nenhum dado')),
+            Expanded(
+                child: PakiImageBackground(
+                    url: 'assets/images/bermuda_error.png',
+                    text: 'Erro ao carregar')),
+            Expanded(
+                child: PakiImageBackground(
+                    url: 'assets/images/bermuda-win.png',
+                    text: 'Operação concluída')),
+          ],
+        ),
+      ),
+    );
+  });
+
+  dashbook.storiesOf('PakiDialogs').add('Snackbars', (ctx) {
+    const example = '''
+        Column(
+          children: [
+            ElevatedButton(onPressed: () => pakiShowSnackBar(...), child: Text('Sucesso')),
+            ElevatedButton(onPressed: () => pakiShowSnackBarErrors(...), child: Text('Erro')),
+          ],
+        )
+        ''';
+
+    return GenerateComponent(
+      example: example,
+      component: Builder(
+        builder: (context) => Wrap(
+          alignment: WrapAlignment.center,
+          spacing: 12,
+          runSpacing: 12,
+          children: [
+            ElevatedButton.icon(
+              onPressed: () => pakiShowSnackBar(
+                context: context,
+                content: const Text('Registro salvo com sucesso'),
+                color: Colors.green,
+              ),
+              icon: const Icon(Icons.check),
+              label: const Text('Sucesso'),
+            ),
+            ElevatedButton.icon(
+              onPressed: () => pakiShowSnackBar(
+                context: context,
+                content: const Text('Atenção antes de continuar'),
+                color: Colors.orange,
+              ),
+              icon: const Icon(Icons.warning),
+              label: const Text('Atenção'),
+            ),
+            ElevatedButton.icon(
+              onPressed: () => pakiShowSnackBarErrors(
+                context: context,
+                content: 'Não foi possível concluir a operação',
+              ),
+              icon: const Icon(Icons.error),
+              label: const Text('Erro'),
+            ),
+          ],
+        ),
+      ),
+    );
+  });
+
+  dashbook.storiesOf('PakiContainer').add('Composição', (ctx) {
+    const example = '''
+        PakiContainer(
+          child: Padding(
+            padding: EdgeInsets.all(24),
+            child: Column(children: [...]),
+          ),
+        )
+        ''';
+
+    return GenerateComponent(
+      example: example,
+      component: PakiContainer(
+        child: Padding(
+          padding: const EdgeInsets.all(24),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const Text('Resumo operacional',
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+              const SizedBox(height: 16),
+              const Wrap(
+                alignment: WrapAlignment.center,
+                spacing: 16,
+                runSpacing: 12,
+                children: [
+                  PakiIndicator(
+                      text: 'Pedidos', isSquare: false, color: Colors.blue),
+                  PakiIndicator(
+                      text: 'Pagamentos', isSquare: false, color: Colors.green),
+                  PakiIndicator(
+                      text: 'Alertas', isSquare: false, color: Colors.orange),
+                ],
+              ),
+              const SizedBox(height: 20),
+              PakiButton(
+                  text: 'Atualizar', iconData: Icons.refresh, onPressed: _noop),
+            ],
+          ),
+        ),
+      ),
+    );
+  });
+
+  dashbook.storiesOf('PakiScaffold').add('Tela completa', (ctx) {
+    const example = '''
+        PakiScaffold(
+          label: 'Pedidos',
+          head: PakiInputField(...),
+          body: PakiEditListView(...),
+          floatingActionButton: PakiAddButton(onPressed: () {}),
+          bottomNavigationBar: BottomAppBar(...),
+        )
+        ''';
+
+    return GenerateComponent(
+      example: example,
+      component: SizedBox(
+        height: 520,
+        child: PakiScaffold(
+          label: 'Pedidos',
+          widgetButton:
+              IconButton(onPressed: _noop, icon: const Icon(Icons.filter_alt)),
+          head: Padding(
+            padding: const EdgeInsets.all(8),
+            child: PakiInputField(
+              name: 'Buscar',
+              controller: TextEditingController(),
+              prefixIcon: Icons.search,
+              removeHorizontalDiv: true,
+            ),
+          ),
+          body: PakiEditListView(
+            children: const [
+              ListTile(
+                  leading: Icon(Icons.receipt_long),
+                  title: Text('Pedido #1024'),
+                  subtitle: Text('Aguardando pagamento')),
+              ListTile(
+                  leading: Icon(Icons.local_shipping),
+                  title: Text('Pedido #1025'),
+                  subtitle: Text('Em separação')),
+              ListTile(
+                  leading: Icon(Icons.check_circle),
+                  title: Text('Pedido #1026'),
+                  subtitle: Text('Concluído')),
+            ],
+          ),
+          floatingActionButton: PakiAddButton(onPressed: _noop),
+          bottomNavigationBar: const BottomAppBar(
+            child: SizedBox(
+              height: 48,
+              child: Center(child: Text('3 registros encontrados')),
+            ),
+          ),
+        ),
       ),
     );
   });
