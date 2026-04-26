@@ -1,6 +1,6 @@
 name: pakitec_components
 description: components from pakitec devs
-version: 1.0.46
+version: 1.0.47
 homepage: 'www.pakitec.com.br'
 publish_to: none
 
@@ -13,7 +13,7 @@ dependencies:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
-  rive:
+  rive: 0.13.20
   http: ^1.0.0
   intl: ^0.20.2
   flutter_placeholder_textlines: ^1.1.2
