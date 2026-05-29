@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_quill/flutter_quill.dart';
 import 'package:dashbook/dashbook.dart';
 import 'package:pakitec_components/pakitec_components.dart';
 import 'package:pakitec_components/src/widgets/button.dart';
@@ -447,6 +448,28 @@ void main() {
     );
   });
 
+  dashbook.storiesOf('PakiTextField').add('Example', (ctx) {
+    final controller = QuillController.basic();
+    final hint = ctx.textProperty('Hint', 'Digite o conteúdo detalhado');
+    final example = '''
+        PakiTextField(
+          name: 'Descrição longa',
+          controller: QuillController.basic(),
+          hint: '$hint',
+          onPlainTextChanged: (value) {},
+        )
+        ''';
+
+    return GenerateComponent(
+      example: example,
+      component: PakiTextField(
+        name: 'Descrição longa',
+        controller: controller,
+        hint: hint,
+        onPlainTextChanged: (value) {},
+      ),
+    );
+  });
   dashbook.storiesOf('PakiInputZipCode').add('Example', (ctx) {
     final controller = TextEditingController();
     const example = '''

@@ -1,12 +1,12 @@
 name: pakitec_components
 description: components from pakitec devs
-version: 1.0.48
+version: 1.0.49
 homepage: 'www.pakitec.com.br'
 publish_to: none
 
 environment:
-  sdk: ">=2.15.0 <3.0.0"
-  flutter: ">=1.17.0"
+  sdk: ">=3.10.0 <4.0.0"
+  flutter: ">=3.38.0"
 
 dependencies:
   flutter:
@@ -21,6 +21,7 @@ dependencies:
   flutter_masked_text2: ^0.9.1
   dropdown_search: ^5.0.6
   flutter_colorpicker: ^1.1.0
+  flutter_quill: ^11.5.0
   pakitec_themes:
     git: https://github.com/Pakitec/pakitec-themes.git
 
