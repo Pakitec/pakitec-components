@@ -20,7 +20,7 @@ Pacote de componentes visuais reutilizáveis criado pela equipe da Pakitec, com 
 
 ### Pré-requisitos
 
-- Flutter SDK 3.10 ou superior
+- Flutter SDK 3.38 ou superior
 - Acesso ao repositório privado da Pakitec
 - Adicionado como dependência via Git:
 
