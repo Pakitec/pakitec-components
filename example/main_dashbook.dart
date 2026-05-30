@@ -41,6 +41,8 @@ void main() {
     light: ThemeData.light(),
     dark: ThemeData.dark(),
     title: 'Componentes Pakitec',
+    localizationsDelegates: FlutterQuillLocalizations.localizationsDelegates,
+    supportedLocales: FlutterQuillLocalizations.supportedLocales,
   );
 
   dashbook.storiesOf('PakiButton').add('Example', (ctx) {
@@ -59,7 +61,8 @@ void main() {
     final largura = ctx.numberProperty('Largura', 150);
     final altura = ctx.numberProperty('Altura', 50);
 
-    final example = '''
+    final example =
+        '''
         PakiButton(
           text: '$text',
           iconData: Icons.${selectedIcon.name.toLowerCase()},
@@ -70,21 +73,23 @@ void main() {
         ''';
 
     return GenerateComponent(
-        example: example,
-        component: PakiButton(
-          text: text,
-          iconData: selectedIcon.icon,
-          onPressed: () => print('Botão pressionado'),
-          width: largura,
-          height: altura,
-        ));
+      example: example,
+      component: PakiButton(
+        text: text,
+        iconData: selectedIcon.icon,
+        onPressed: () => print('Botão pressionado'),
+        width: largura,
+        height: altura,
+      ),
+    );
   });
 
   dashbook.storiesOf('PakiCheckbox').add('Example', (ctx) {
     final labelText = ctx.textProperty('Label', 'I accept the terms');
     final isChecked = ctx.boolProperty('Checked', false);
 
-    final example = '''
+    final example =
+        '''
         PakiCheckbox(
           label: '$labelText',
           selectedValue: $isChecked,
@@ -106,13 +111,14 @@ void main() {
     final labelText = ctx.textProperty('Label', 'Select an option');
     final showSearch = ctx.boolProperty('Show Search Box', true);
     final removeDivider = ctx.boolProperty('Remove Horizontal Divider', false);
-    final selected = ctx.listProperty<String>(
-      'Selected Value',
+    final selected = ctx.listProperty<String>('Selected Value', 'Option 1', [
       'Option 1',
-      ['Option 1', 'Option 2', 'Option 3'],
-    );
+      'Option 2',
+      'Option 3',
+    ]);
 
-    final example = '''
+    final example =
+        '''
         PakiComboField(
           label: '$labelText',
           list: ['Option 1', 'Option 2', 'Option 3'],
@@ -140,7 +146,8 @@ void main() {
     final initialColor = ctx.textProperty('Cor inicial', '#FF0000');
     final controller = TextEditingController(text: initialColor);
 
-    final example = '''
+    final example =
+        '''
         PakiColorPicker(
           controller: TextEditingController(text: '$initialColor'),
           currentColor: '$initialColor',
@@ -164,7 +171,8 @@ void main() {
     final showUntil = badgeExpired
         ? DateTime.now().subtract(const Duration(days: 1))
         : DateTime.now().add(const Duration(days: 1));
-    final example = '''
+    final example =
+        '''
         PakiNewBadge(
           tooltip: '$tooltipText',
           showUntil: DateTime.now().add(const Duration(days: 1)),
@@ -205,7 +213,8 @@ void main() {
     final ignoreMaxWidth = ctx.boolProperty('Ignorar largura máxima', false);
     final withDecoration = ctx.boolProperty('Com decoração', true);
 
-    final example = '''
+    final example =
+        '''
         PakiContainer(
           ignoreMaxWidth: $ignoreMaxWidth,
           withDecoration: $withDecoration,
@@ -232,7 +241,8 @@ void main() {
   dashbook.storiesOf('PakiDialogs').add('Example', (ctx) {
     final message = ctx.textProperty('Mensagem', 'Deseja confirmar esta ação?');
 
-    final example = '''
+    final example =
+        '''
         pakiShowQuestionYesNo(
           context: context,
           message: '$message',
@@ -284,10 +294,13 @@ void main() {
 
   dashbook.storiesOf('PakiDivider').add('Example', (ctx) {
     final verticalWidth = ctx.numberProperty('Largura do divisor vertical', 20);
-    final horizontalHeight =
-        ctx.numberProperty('Altura do divisor horizontal', 20);
+    final horizontalHeight = ctx.numberProperty(
+      'Altura do divisor horizontal',
+      20,
+    );
 
-    final example = '''
+    final example =
+        '''
         Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: const [
@@ -363,7 +376,8 @@ void main() {
 
   dashbook.storiesOf('PakiImageBackground').add('Example', (ctx) {
     final text = ctx.textProperty('Texto', 'Nenhum dado encontrado');
-    final example = '''
+    final example =
+        '''
         PakiImageBackground(
           url: 'assets/images/bermuda-no-data.png',
           text: '$text',
@@ -384,7 +398,8 @@ void main() {
     final color = ctx.colorProperty('Cor', Colors.blue);
     final label = ctx.textProperty('Texto', 'Indicador');
 
-    final example = '''
+    final example =
+        '''
         PakiIndicator(
           text: '$label',
           isSquare: $isSquare,
@@ -394,18 +409,15 @@ void main() {
 
     return GenerateComponent(
       example: example,
-      component: PakiIndicator(
-        text: label,
-        isSquare: isSquare,
-        color: color,
-      ),
+      component: PakiIndicator(text: label, isSquare: isSquare, color: color),
     );
   });
 
   dashbook.storiesOf('PakiInputCalendar').add('Example', (ctx) {
     final controller = TextEditingController();
     final isDate = ctx.boolProperty('É data?', true);
-    final example = '''
+    final example =
+        '''
         PakiInputCalendar(
           name: 'Data',
           controller: TextEditingController(),
@@ -428,7 +440,8 @@ void main() {
   dashbook.storiesOf('PakiInputField').add('Example', (ctx) {
     final controller = TextEditingController(text: 'Texto inicial');
     final hint = ctx.textProperty('Hint', 'Digite algo');
-    final example = '''
+    final example =
+        '''
         PakiInputField(
           name: 'Campo de texto',
           controller: TextEditingController(text: 'Texto inicial'),
@@ -451,7 +464,8 @@ void main() {
   dashbook.storiesOf('PakiTextField').add('Example', (ctx) {
     final controller = QuillController.basic();
     final hint = ctx.textProperty('Hint', 'Digite o conteúdo detalhado');
-    final example = '''
+    final example =
+        '''
         PakiTextField(
           name: 'Descrição longa',
           controller: QuillController.basic(),
@@ -499,9 +513,7 @@ void main() {
 
     return GenerateComponent(
       example: example,
-      component: PakiPrintButton(
-        onTap: () => print('Imprimir acionado'),
-      ),
+      component: PakiPrintButton(onTap: () => print('Imprimir acionado')),
     );
   });
 
@@ -537,14 +549,11 @@ void main() {
 
     return const GenerateComponent(
       example: example,
-      component: SizedBox(
-        height: 300,
-        child: PakiSkeletonIndicator(),
-      ),
+      component: SizedBox(height: 300, child: PakiSkeletonIndicator()),
     );
   });
 
-  dashbook.storiesOf('PakiButton').add('Galeria', (ctx) {
+  dashbook.storiesOf('PakiButton - Galeria').add('Galeria', (ctx) {
     const example = '''
         Wrap(
           spacing: 12,
@@ -568,26 +577,31 @@ void main() {
           PakiButton(text: 'Adicionar', iconData: Icons.add, onPressed: _noop),
           PakiButton(text: 'Salvar', iconData: Icons.save, onPressed: _noop),
           PakiButton(
-              text: 'Confirmar', iconData: Icons.check, onPressed: _noop),
+            text: 'Confirmar',
+            iconData: Icons.check,
+            onPressed: _noop,
+          ),
           PakiButton(text: 'Excluir', iconData: Icons.delete, onPressed: _noop),
           PakiButton(
-              text: 'Pequeno',
-              iconData: Icons.tune,
-              width: 120,
-              height: 40,
-              onPressed: _noop),
+            text: 'Pequeno',
+            iconData: Icons.tune,
+            width: 120,
+            height: 40,
+            onPressed: _noop,
+          ),
           PakiButton(
-              text: 'Largo',
-              iconData: Icons.open_in_full,
-              width: 220,
-              height: 56,
-              onPressed: _noop),
+            text: 'Largo',
+            iconData: Icons.open_in_full,
+            width: 220,
+            height: 56,
+            onPressed: _noop,
+          ),
         ],
       ),
     );
   });
 
-  dashbook.storiesOf('PakiInputField').add('Variações', (ctx) {
+  dashbook.storiesOf('PakiInputField - Variações').add('Variações', (ctx) {
     const example = '''
         Column(
           children: [
@@ -625,7 +639,8 @@ void main() {
           PakiInputField(
             name: 'Observações',
             controller: TextEditingController(
-                text: 'Campo com múltiplas linhas para textos maiores.'),
+              text: 'Campo com múltiplas linhas para textos maiores.',
+            ),
             maxLines: 3,
             maxLength: 120,
             textAlign: TextAlign.left,
@@ -642,7 +657,9 @@ void main() {
     );
   });
 
-  dashbook.storiesOf('PakiInputCalendar').add('Data e hora', (ctx) {
+  dashbook.storiesOf('PakiInputCalendar - Data e hora').add('Data e hora', (
+    ctx,
+  ) {
     const example = '''
         Row(
           children: [
@@ -680,7 +697,7 @@ void main() {
     );
   });
 
-  dashbook.storiesOf('PakiComboField').add('Listas', (ctx) {
+  dashbook.storiesOf('PakiComboField - Listas').add('Listas', (ctx) {
     const example = '''
         Column(
           children: [
@@ -711,7 +728,7 @@ void main() {
     );
   });
 
-  dashbook.storiesOf('PakiIndicator').add('Status', (ctx) {
+  dashbook.storiesOf('PakiIndicator - Status').add('Status', (ctx) {
     const example = '''
         Wrap(
           spacing: 16,
@@ -733,19 +750,32 @@ void main() {
         children: [
           PakiIndicator(text: 'Ativo', isSquare: false, color: Colors.green),
           PakiIndicator(
-              text: 'Pendente', isSquare: false, color: Colors.orange),
+            text: 'Pendente',
+            isSquare: false,
+            color: Colors.orange,
+          ),
           PakiIndicator(text: 'Bloqueado', isSquare: false, color: Colors.red),
           PakiIndicator(
-              text: 'Novo', isSquare: true, color: Colors.blue, size: 18),
+            text: 'Novo',
+            isSquare: true,
+            color: Colors.blue,
+            size: 18,
+          ),
           PakiIndicator(
-              text: 'Arquivado', isSquare: true, color: Colors.grey, size: 18),
+            text: 'Arquivado',
+            isSquare: true,
+            color: Colors.grey,
+            size: 18,
+          ),
         ],
       ),
     );
   });
 
-  dashbook.storiesOf('PakiImageBackground').add('Estados vazios', (ctx) {
-    const example = '''
+  dashbook.storiesOf('PakiImageBackground - Estados vazios').add(
+    'Estados vazios',
+    (ctx) {
+      const example = '''
         Row(
           children: [
             Expanded(child: PakiImageBackground(url: 'assets/images/bermuda-no-data.png', text: 'Nenhum dado')),
@@ -754,31 +784,38 @@ void main() {
         )
         ''';
 
-    return const GenerateComponent(
-      example: example,
-      component: SizedBox(
-        height: 320,
-        child: Row(
-          children: [
-            Expanded(
+      return const GenerateComponent(
+        example: example,
+        component: SizedBox(
+          height: 320,
+          child: Row(
+            children: [
+              Expanded(
                 child: PakiImageBackground(
-                    url: 'assets/images/bermuda-no-data.png',
-                    text: 'Nenhum dado')),
-            Expanded(
+                  url: 'assets/images/bermuda-no-data.png',
+                  text: 'Nenhum dado',
+                ),
+              ),
+              Expanded(
                 child: PakiImageBackground(
-                    url: 'assets/images/bermuda_error.png',
-                    text: 'Erro ao carregar')),
-            Expanded(
+                  url: 'assets/images/bermuda_error.png',
+                  text: 'Erro ao carregar',
+                ),
+              ),
+              Expanded(
                 child: PakiImageBackground(
-                    url: 'assets/images/bermuda-win.png',
-                    text: 'Operação concluída')),
-          ],
+                  url: 'assets/images/bermuda-win.png',
+                  text: 'Operação concluída',
+                ),
+              ),
+            ],
+          ),
         ),
-      ),
-    );
-  });
+      );
+    },
+  );
 
-  dashbook.storiesOf('PakiDialogs').add('Snackbars', (ctx) {
+  dashbook.storiesOf('PakiDialogs - Snackbars').add('Snackbars', (ctx) {
     const example = '''
         Column(
           children: [
@@ -828,7 +865,7 @@ void main() {
     );
   });
 
-  dashbook.storiesOf('PakiContainer').add('Composição', (ctx) {
+  dashbook.storiesOf('PakiContainer - Composição').add('Composição', (ctx) {
     const example = '''
         PakiContainer(
           child: Padding(
@@ -846,8 +883,10 @@ void main() {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              const Text('Resumo operacional',
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+              const Text(
+                'Resumo operacional',
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              ),
               const SizedBox(height: 16),
               const Wrap(
                 alignment: WrapAlignment.center,
@@ -855,16 +894,28 @@ void main() {
                 runSpacing: 12,
                 children: [
                   PakiIndicator(
-                      text: 'Pedidos', isSquare: false, color: Colors.blue),
+                    text: 'Pedidos',
+                    isSquare: false,
+                    color: Colors.blue,
+                  ),
                   PakiIndicator(
-                      text: 'Pagamentos', isSquare: false, color: Colors.green),
+                    text: 'Pagamentos',
+                    isSquare: false,
+                    color: Colors.green,
+                  ),
                   PakiIndicator(
-                      text: 'Alertas', isSquare: false, color: Colors.orange),
+                    text: 'Alertas',
+                    isSquare: false,
+                    color: Colors.orange,
+                  ),
                 ],
               ),
               const SizedBox(height: 20),
               PakiButton(
-                  text: 'Atualizar', iconData: Icons.refresh, onPressed: _noop),
+                text: 'Atualizar',
+                iconData: Icons.refresh,
+                onPressed: _noop,
+              ),
             ],
           ),
         ),
@@ -872,7 +923,9 @@ void main() {
     );
   });
 
-  dashbook.storiesOf('PakiScaffold').add('Tela completa', (ctx) {
+  dashbook.storiesOf('PakiScaffold - Tela completa').add('Tela completa', (
+    ctx,
+  ) {
     const example = '''
         PakiScaffold(
           label: 'Pedidos',
@@ -889,8 +942,10 @@ void main() {
         height: 520,
         child: PakiScaffold(
           label: 'Pedidos',
-          widgetButton:
-              IconButton(onPressed: _noop, icon: const Icon(Icons.filter_alt)),
+          widgetButton: IconButton(
+            onPressed: _noop,
+            icon: const Icon(Icons.filter_alt),
+          ),
           head: Padding(
             padding: const EdgeInsets.all(8),
             child: PakiInputField(
@@ -903,17 +958,20 @@ void main() {
           body: PakiEditListView(
             children: const [
               ListTile(
-                  leading: Icon(Icons.receipt_long),
-                  title: Text('Pedido #1024'),
-                  subtitle: Text('Aguardando pagamento')),
+                leading: Icon(Icons.receipt_long),
+                title: Text('Pedido #1024'),
+                subtitle: Text('Aguardando pagamento'),
+              ),
               ListTile(
-                  leading: Icon(Icons.local_shipping),
-                  title: Text('Pedido #1025'),
-                  subtitle: Text('Em separação')),
+                leading: Icon(Icons.local_shipping),
+                title: Text('Pedido #1025'),
+                subtitle: Text('Em separação'),
+              ),
               ListTile(
-                  leading: Icon(Icons.check_circle),
-                  title: Text('Pedido #1026'),
-                  subtitle: Text('Concluído')),
+                leading: Icon(Icons.check_circle),
+                title: Text('Pedido #1026'),
+                subtitle: Text('Concluído'),
+              ),
             ],
           ),
           floatingActionButton: PakiAddButton(onPressed: _noop),
