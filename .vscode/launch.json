@@ -1,0 +1,43 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "pakitec-components (web)",
+            "request": "launch",
+            "type": "dart",
+            "program": "example/main_dashbook.dart",
+            "deviceId": "chrome",
+            "toolArgs": [
+                "--web-port",
+                "4201"
+            ]
+        },
+        {
+            "name": "pakitec-components (web profile)",
+            "request": "launch",
+            "type": "dart",
+            "program": "example/main_dashbook.dart",
+            "deviceId": "chrome",
+            "toolArgs": [
+                "--web-port",
+                "4201"
+            ],
+            "flutterMode": "profile"
+        },
+        {
+            "name": "pakitec-components (web release)",
+            "request": "launch",
+            "type": "dart",
+            "program": "example/main_dashbook.dart",
+            "deviceId": "chrome",
+            "toolArgs": [
+                "--web-port",
+                "4201"
+            ],
+            "flutterMode": "release"
+        }
+    ]
+}
