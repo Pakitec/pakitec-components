@@ -46,10 +46,14 @@ class _PakiTextFieldState extends State<PakiTextField> {
   bool get removeHorizontalDiv => widget.removeHorizontalDiv ?? false;
   bool get willValidate => widget.willValidate ?? true;
   FormFieldState<String>? _formFieldState;
+  late final FocusNode _focusNode;
+  late final ScrollController _scrollController;
 
   @override
   void initState() {
     super.initState();
+    _focusNode = FocusNode();
+    _scrollController = ScrollController();
     widget.controller.addListener(_handleControllerChanged);
   }
 
@@ -66,6 +70,8 @@ class _PakiTextFieldState extends State<PakiTextField> {
   void dispose() {
     _formFieldState = null;
     widget.controller.removeListener(_handleControllerChanged);
+    _focusNode.dispose();
+    _scrollController.dispose();
     super.dispose();
   }
 
@@ -149,6 +155,8 @@ class _PakiTextFieldState extends State<PakiTextField> {
                     padding: widget.padding ?? const EdgeInsets.all(12),
                     child: QuillEditor.basic(
                       controller: widget.controller,
+                      focusNode: _focusNode,
+                      scrollController: _scrollController,
                       config: QuillEditorConfig(
                         placeholder: widget.hint,
                         scrollable: true,
