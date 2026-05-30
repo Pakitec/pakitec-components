@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_quill/flutter_quill.dart';
-import 'package:pakitec_themes/pakitec_themes.dart';
 
 import 'divider.dart';
 
@@ -95,11 +94,6 @@ class _PakiTextFieldState extends State<PakiTextField> {
   Widget build(BuildContext context) {
     widget.controller.readOnly = !isEnabled;
 
-    final border = OutlineInputBorder(
-      borderRadius: BorderRadius.circular(4),
-      borderSide: BorderSide(color: Theme.of(context).dividerColor),
-    );
-
     return FormField<String>(
       validator: widget.validator ?? _defaultValidator,
       onSaved: (_) => widget.onSaved?.call(_plainText),
@@ -116,11 +110,6 @@ class _PakiTextFieldState extends State<PakiTextField> {
                 hintText: widget.hint,
                 enabled: isEnabled,
                 errorText: state.errorText,
-                border: border,
-                enabledBorder: border,
-                focusedBorder: border.copyWith(
-                  borderSide: const BorderSide(color: pakiDefaultPrimaryColor),
-                ),
                 contentPadding: EdgeInsets.zero,
               ),
               child: Column(
