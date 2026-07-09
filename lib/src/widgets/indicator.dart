@@ -7,7 +7,8 @@ class PakiIndicator extends StatelessWidget {
   final double? size;
   final Color? textColor;
 
-  const PakiIndicator({Key? key,
+  const PakiIndicator({
+    Key? key,
     this.color,
     required this.text,
     required this.isSquare,
@@ -27,14 +28,16 @@ class PakiIndicator extends StatelessWidget {
             color: color,
           ),
         ),
-        const SizedBox(
-          width: 4
-        ),
+        const SizedBox(width: 4),
         Text(
           text,
-          style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: textColor),
-        )
-      ]
+          style: TextStyle(
+            fontSize: 16,
+            fontWeight: FontWeight.bold,
+            color: textColor,
+          ),
+        ),
+      ],
     );
   }
 }

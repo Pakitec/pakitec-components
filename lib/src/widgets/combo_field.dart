@@ -11,15 +11,15 @@ class PakiComboField extends StatefulWidget {
   final bool? removeHorizontalDiv;
   final void Function(String? value) onSelect;
 
-  const PakiComboField(
-      {Key? key,
-      required this.label,
-      required this.list,
-      required this.onSelect,
-      this.showSearchBox,
-      this.selectedValue,
-      this.removeHorizontalDiv})
-      : super(key: key);
+  const PakiComboField({
+    Key? key,
+    required this.label,
+    required this.list,
+    required this.onSelect,
+    this.showSearchBox,
+    this.selectedValue,
+    this.removeHorizontalDiv,
+  }) : super(key: key);
 
   @override
   State<PakiComboField> createState() => _PakiComboFieldState();
@@ -33,38 +33,36 @@ class _PakiComboFieldState extends State<PakiComboField> {
   void initState() {
     super.initState();
     showSearchBox = widget.showSearchBox ?? false;
-    if (widget.removeHorizontalDiv != null) removeHorizontalDiv = widget.removeHorizontalDiv!;
+    if (widget.removeHorizontalDiv != null)
+      removeHorizontalDiv = widget.removeHorizontalDiv!;
   }
 
   @override
   Widget build(BuildContext context) {
-    return Column(children: <Widget>[
-      DropdownSearch<String>(
-        popupProps: const PopupProps.menu(
-          showSelectedItems: true,
-
-        ),
-        items: widget.list,
-        dropdownDecoratorProps: DropDownDecoratorProps(
-          dropdownSearchDecoration: InputDecoration(
-            labelText: widget.label,
+    return Column(
+      children: <Widget>[
+        DropdownSearch<String>(
+          popupProps: const PopupProps.menu(showSelectedItems: true),
+          items: widget.list,
+          dropdownDecoratorProps: DropDownDecoratorProps(
+            dropdownSearchDecoration: InputDecoration(labelText: widget.label),
           ),
+          onChanged: widget.onSelect,
+          selectedItem: widget.selectedValue,
         ),
-        onChanged: widget.onSelect,
-        selectedItem: widget.selectedValue,
-      ),
 
-      // DropdownSearch<String>(
-      //     mode: Mode.MENU,
-      //     showSelectedItems: true,
-      //     showSearchBox: showSearchBox,
-      //     items: widget.list,
-      //     // ignore: deprecated_member_use
-      //     //label: widget.label,
-      //     dropdownSearchTextAlign: TextAlign.center,
-      //     selectedItem: widget.selectedValue,
-      //     onChanged: widget.onSelect),
-      removeHorizontalDiv ? Container() : const PakiHorizontalDiv()
-    ]);
+        // DropdownSearch<String>(
+        //     mode: Mode.MENU,
+        //     showSelectedItems: true,
+        //     showSearchBox: showSearchBox,
+        //     items: widget.list,
+        //     // ignore: deprecated_member_use
+        //     //label: widget.label,
+        //     dropdownSearchTextAlign: TextAlign.center,
+        //     selectedItem: widget.selectedValue,
+        //     onChanged: widget.onSelect),
+        removeHorizontalDiv ? Container() : const PakiHorizontalDiv(),
+      ],
+    );
   }
 }

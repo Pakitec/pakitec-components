@@ -3,6 +3,17 @@ import 'package:flutter_quill/flutter_quill.dart';
 
 import 'divider.dart';
 
+enum PakiTextFieldToolbarItem {
+  undo,
+  redo,
+  bold,
+  italic,
+  underline,
+  strike,
+  orderedList,
+  bulletList,
+}
+
 class PakiTextField extends StatefulWidget {
   final String? name;
   final QuillController controller;
@@ -17,6 +28,7 @@ class PakiTextField extends StatefulWidget {
   final FormFieldValidator<String>? validator;
   final FormFieldSetter<String>? onSaved;
   final bool? willValidate;
+  final List<PakiTextFieldToolbarItem>? hiddenToolbarItems;
 
   const PakiTextField({
     Key? key,
@@ -33,6 +45,7 @@ class PakiTextField extends StatefulWidget {
     this.validator,
     this.onSaved,
     this.willValidate,
+    this.hiddenToolbarItems,
   }) : super(key: key);
 
   @override
@@ -100,6 +113,8 @@ class _PakiTextFieldState extends State<PakiTextField> {
       initialValue: _plainText,
       builder: (state) {
         _formFieldState = state;
+        final hiddenSet =
+            widget.hiddenToolbarItems?.toSet() ?? <PakiTextFieldToolbarItem>{};
 
         return Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -118,7 +133,7 @@ class _PakiTextFieldState extends State<PakiTextField> {
                   if (showToolbar && isEnabled)
                     QuillSimpleToolbar(
                       controller: widget.controller,
-                      config: const QuillSimpleToolbarConfig(
+                      config: QuillSimpleToolbarConfig(
                         showHeaderStyle: false,
                         showCodeBlock: false,
                         showInlineCode: false,
@@ -134,6 +149,30 @@ class _PakiTextFieldState extends State<PakiTextField> {
                         showSuperscript: false,
                         showFontFamily: false,
                         showFontSize: false,
+                        showUndo: !hiddenSet.contains(
+                          PakiTextFieldToolbarItem.undo,
+                        ),
+                        showRedo: !hiddenSet.contains(
+                          PakiTextFieldToolbarItem.redo,
+                        ),
+                        showBoldButton: !hiddenSet.contains(
+                          PakiTextFieldToolbarItem.bold,
+                        ),
+                        showItalicButton: !hiddenSet.contains(
+                          PakiTextFieldToolbarItem.italic,
+                        ),
+                        showUnderLineButton: !hiddenSet.contains(
+                          PakiTextFieldToolbarItem.underline,
+                        ),
+                        showStrikeThrough: !hiddenSet.contains(
+                          PakiTextFieldToolbarItem.strike,
+                        ),
+                        showListNumbers: !hiddenSet.contains(
+                          PakiTextFieldToolbarItem.orderedList,
+                        ),
+                        showListBullets: !hiddenSet.contains(
+                          PakiTextFieldToolbarItem.bulletList,
+                        ),
                       ),
                     ),
                   Container(

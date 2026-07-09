@@ -51,11 +51,7 @@ class PakiNewBadge extends StatelessWidget {
               ),
               child: Padding(
                 padding: badgePadding,
-                child: Icon(
-                  icon,
-                  size: iconSize,
-                  color: Colors.black87,
-                ),
+                child: Icon(icon, size: iconSize, color: Colors.black87),
               ),
             ),
           ),

@@ -7,7 +7,8 @@ class PakiColorPicker extends StatefulWidget {
   final String currentColor;
   final Function(String) onChanged;
 
-  const PakiColorPicker({Key? key,
+  const PakiColorPicker({
+    Key? key,
     required this.controller,
     required this.currentColor,
     required this.onChanged,
@@ -18,7 +19,6 @@ class PakiColorPicker extends StatefulWidget {
 }
 
 class _ColorPickerFieldState extends State<PakiColorPicker> {
-
   late Color actualColor;
   @override
   void initState() {
@@ -38,7 +38,8 @@ class _ColorPickerFieldState extends State<PakiColorPicker> {
             onColorChanged: (color) {
               setState(() => actualColor = color);
               // ignore: deprecated_member_use
-              final hexColor = '#${color.value.toRadixString(16).substring(2).toUpperCase()}';
+              final hexColor =
+                  '#${color.value.toRadixString(16).substring(2).toUpperCase()}';
               widget.controller.text = hexColor;
               widget.onChanged(hexColor);
             },
@@ -56,31 +57,33 @@ class _ColorPickerFieldState extends State<PakiColorPicker> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(children: <Widget>[
-      InkWell(
-        onTap: openColorPicker,
-        child: IgnorePointer(
-          ignoring: true,
-          child: TextField(
-            controller: widget.controller,
-            decoration: InputDecoration(
-              labelText: 'Cor',
-              prefixIcon: Container(
-                width: 20,
-                height: 20,
-                margin: const EdgeInsets.all(8),
-                decoration: BoxDecoration(
-                  color: actualColor,
-                  shape: BoxShape.circle,
-                  border: Border.all(color: Colors.grey.shade300),
+    return Column(
+      children: <Widget>[
+        InkWell(
+          onTap: openColorPicker,
+          child: IgnorePointer(
+            ignoring: true,
+            child: TextField(
+              controller: widget.controller,
+              decoration: InputDecoration(
+                labelText: 'Cor',
+                prefixIcon: Container(
+                  width: 20,
+                  height: 20,
+                  margin: const EdgeInsets.all(8),
+                  decoration: BoxDecoration(
+                    color: actualColor,
+                    shape: BoxShape.circle,
+                    border: Border.all(color: Colors.grey.shade300),
+                  ),
                 ),
               ),
             ),
           ),
         ),
-      ),
-      const PakiHorizontalDiv()
-    ]);
+        const PakiHorizontalDiv(),
+      ],
+    );
   }
 
   Color _parseColor(String hexColor) {

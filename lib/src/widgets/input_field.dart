@@ -83,8 +83,10 @@ class _PakiInputFieldState extends State<PakiInputField> {
     if (widget.obscureText != null) obscureText = widget.obscureText!;
     if (widget.maxLines != null) maxLines = widget.maxLines!;
     if (widget.textAlign != null) textAlign = widget.textAlign!;
-    if (widget.removeHorizontalDiv != null) removeHorizontalDiv = widget.removeHorizontalDiv!;
-    if (widget.isPasswordField != null) isPasswordField = widget.isPasswordField!;
+    if (widget.removeHorizontalDiv != null)
+      removeHorizontalDiv = widget.removeHorizontalDiv!;
+    if (widget.isPasswordField != null)
+      isPasswordField = widget.isPasswordField!;
 
     // Inicializa o FocusNode e adiciona os listeners para detectar entrada e saída de foco
     _focusNode = FocusNode();
@@ -109,10 +111,14 @@ class _PakiInputFieldState extends State<PakiInputField> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(children: <Widget>[
-      widget.autoFillHints != null ? AutofillGroup(child: _textFormField()) : _textFormField(),
-      removeHorizontalDiv ? Container() : const PakiHorizontalDiv()
-    ]);
+    return Column(
+      children: <Widget>[
+        widget.autoFillHints != null
+            ? AutofillGroup(child: _textFormField())
+            : _textFormField(),
+        removeHorizontalDiv ? Container() : const PakiHorizontalDiv(),
+      ],
+    );
   }
 
   String? _validator(String? value) {
@@ -124,49 +130,59 @@ class _PakiInputFieldState extends State<PakiInputField> {
 
   Widget _textFormField() {
     return TextFormField(
-        autofillHints: isEnabled ? widget.autoFillHints ?? const Iterable.empty() : null,
-        validator: widget.customValidator ?? _validator,
-        onChanged: widget.onChanged,
-        onSaved: widget.onSaved,
-        onFieldSubmitted: widget.onFieldSubmitted,
-        onEditingComplete: widget.onEditingComplete,
-        maxLines: maxLines,
-        maxLength: widget.maxLength ?? TextField.noMaxLength,
-        buildCounter: (
+      autofillHints: isEnabled
+          ? widget.autoFillHints ?? const Iterable.empty()
+          : null,
+      validator: widget.customValidator ?? _validator,
+      onChanged: widget.onChanged,
+      onSaved: widget.onSaved,
+      onFieldSubmitted: widget.onFieldSubmitted,
+      onEditingComplete: widget.onEditingComplete,
+      maxLines: maxLines,
+      maxLength: widget.maxLength ?? TextField.noMaxLength,
+      buildCounter:
+          (
             BuildContext context, {
-              required int currentLength,
-              required bool isFocused,
-              required int? maxLength,
-            }) {
-          if ((widget.maxLength ?? -1) > 0) {
-            return Text('$currentLength / ${widget.maxLength}', style: Theme.of(context).textTheme.bodySmall);
-          } else {
-            return const SizedBox.shrink(); // Oculta o contador
-          }
-        },
-        controller: widget.controller,
-        focusNode: _focusNode,
-        // Adiciona o FocusNode para detectar foco
-        enabled: isEnabled,
-        keyboardType: keyboardType,
-        textAlign: textAlign,
-        obscureText: isPasswordField ? localObscureText : obscureText,
-        style: const TextStyle(color: pakiDefaultPrimaryColor),
-        decoration: InputDecoration(
-            labelText: widget.name,
-            hintText: widget.hint,
-            prefixIcon: widget.prefixWidget ??
-                (widget.prefixIcon != null ? Icon(widget.prefixIcon, color: Colors.white70) : null),
-            suffixIcon: isPasswordField
-                ? IconButton(
+            required int currentLength,
+            required bool isFocused,
+            required int? maxLength,
+          }) {
+            if ((widget.maxLength ?? -1) > 0) {
+              return Text(
+                '$currentLength / ${widget.maxLength}',
+                style: Theme.of(context).textTheme.bodySmall,
+              );
+            } else {
+              return const SizedBox.shrink(); // Oculta o contador
+            }
+          },
+      controller: widget.controller,
+      focusNode: _focusNode,
+      // Adiciona o FocusNode para detectar foco
+      enabled: isEnabled,
+      keyboardType: keyboardType,
+      textAlign: textAlign,
+      obscureText: isPasswordField ? localObscureText : obscureText,
+      style: const TextStyle(color: pakiDefaultPrimaryColor),
+      decoration: InputDecoration(
+        labelText: widget.name,
+        hintText: widget.hint,
+        prefixIcon:
+            widget.prefixWidget ??
+            (widget.prefixIcon != null
+                ? Icon(widget.prefixIcon, color: Colors.white70)
+                : null),
+        suffixIcon: isPasswordField
+            ? IconButton(
                 icon: const Icon(Icons.remove_red_eye, color: Colors.white70),
                 onPressed: () {
                   setState(() {
                     localObscureText = !localObscureText;
                   });
-                })
-                : widget.suffixWidget ??
-                IconButton(
+                },
+              )
+            : widget.suffixWidget ??
+                  IconButton(
                     onPressed: () {
                       if (keyboardType == TextInputType.number) {
                         try {
@@ -181,6 +197,12 @@ class _PakiInputFieldState extends State<PakiInputField> {
                         widget.onClear!();
                       }
                     },
-                    icon: Icon(Icons.clear, color: isEnabled ? Colors.white70 : Colors.transparent))));
+                    icon: Icon(
+                      Icons.clear,
+                      color: isEnabled ? Colors.white70 : Colors.transparent,
+                    ),
+                  ),
+      ),
+    );
   }
 }

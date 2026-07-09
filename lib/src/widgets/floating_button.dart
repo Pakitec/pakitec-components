@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pakitec_themes/pakitec_themes.dart';
 
-
 class PakiAddButton extends StatefulWidget {
   final Function() onPressed;
 
@@ -15,6 +14,9 @@ class _PakiAddButtonState extends State<PakiAddButton> {
   @override
   Widget build(BuildContext context) {
     return FloatingActionButton(
-        onPressed: widget.onPressed, backgroundColor: pakiDefaultButtonColor, child: const Icon(Icons.add, color: Colors.white));
+      onPressed: widget.onPressed,
+      backgroundColor: pakiDefaultButtonColor,
+      child: const Icon(Icons.add, color: Colors.white),
+    );
   }
 }

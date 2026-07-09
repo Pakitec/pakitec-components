@@ -14,11 +14,16 @@ class _PakiPrintButtonState extends State<PakiPrintButton> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-        onTap: widget.onTap,
-        child: Container(
-            height: 60,
-            width: 60,
-            padding: const EdgeInsets.only(left: 5.0),
-            child: const RiveAnimation.asset('assets/animations/printer.riv', alignment: Alignment.center)));
+      onTap: widget.onTap,
+      child: Container(
+        height: 60,
+        width: 60,
+        padding: const EdgeInsets.only(left: 5.0),
+        child: const RiveAnimation.asset(
+          'assets/animations/printer.riv',
+          alignment: Alignment.center,
+        ),
+      ),
+    );
   }
 }

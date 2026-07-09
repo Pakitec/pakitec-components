@@ -7,7 +7,12 @@ class PakiContainer extends StatefulWidget {
   final bool? ignoreMaxWidth;
   final bool? withDecoration;
 
-  const PakiContainer({Key? key, this.child, this.ignoreMaxWidth, this.withDecoration}) : super(key: key);
+  const PakiContainer({
+    Key? key,
+    this.child,
+    this.ignoreMaxWidth,
+    this.withDecoration,
+  }) : super(key: key);
 
   @override
   State<PakiContainer> createState() => _PakiContainerState();
@@ -27,15 +32,18 @@ class _PakiContainerState extends State<PakiContainer> {
   @override
   Widget build(BuildContext context) {
     return Container(
-        decoration: withDecoration ? pakiDefaultBoxDecoration : null,
-        child: Center(
-            child: Container(
-                width: ignoreMaxWidth
-                    ? double.maxFinite
-                    : kIsWeb
-                        ? 1280
-                        : double.maxFinite,
-                alignment: Alignment.center,
-                child: widget.child)));
+      decoration: withDecoration ? pakiDefaultBoxDecoration : null,
+      child: Center(
+        child: Container(
+          width: ignoreMaxWidth
+              ? double.maxFinite
+              : kIsWeb
+              ? 1280
+              : double.maxFinite,
+          alignment: Alignment.center,
+          child: widget.child,
+        ),
+      ),
+    );
   }
 }

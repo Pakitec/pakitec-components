@@ -94,7 +94,7 @@ class _PakiInputZipCodeState extends State<PakiInputZipCode> {
               // icon: isLoading
               //     ? const PakiCompassIndicator()
               //     : const Icon(Icons.clear, color: Colors.white70),
-              icon: const Icon(Icons.clear, color: Colors.white70)
+              icon: const Icon(Icons.clear, color: Colors.white70),
             ),
           ),
         ),
@@ -110,7 +110,6 @@ class _PakiInputZipCodeState extends State<PakiInputZipCode> {
 
     try {
       final resultZip = await GetZip.fetchZip(zip: cleanZip);
-
 
       if (resultZip.cep == '') {
         // ignore: use_build_context_synchronously

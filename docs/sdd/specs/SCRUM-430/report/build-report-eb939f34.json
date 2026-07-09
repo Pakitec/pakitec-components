@@ -1,0 +1,82 @@
+{
+  "runId": "eb939f34-ee80-4007-91dc-110a13c13454",
+  "planRevision": 1,
+  "buildStartedAt": "2026-07-09T13:44:28.546316-03:00",
+  "buildFinishedAt": "2026-07-09T14:13:03-03:00",
+  "rows": [
+    {
+      "number": "TASK-001",
+      "issueKey": "SCRUM-434",
+      "task": "Declarar enum PakiTextFieldToolbarItem e propriedade hiddenToolbarItems",
+      "startedAt": "2026-07-09T13:40:17-03:00",
+      "finishedAt": "2026-07-09T13:48:20-03:00",
+      "status": "COMPLETED",
+      "observation": "Enum e propriedade declarados em lib/src/widgets/paki_text_field.dart; flutter analyze passou; alteracoes mergeadas na branch master",
+      "validations": [
+        {"command": "flutter analyze lib/src/widgets/paki_text_field.dart", "status": "PASS"},
+        {"command": "Export publico via pakitec_components.dart", "status": "PASS"},
+        {"command": "Retrocompatibilidade do construtor", "status": "PASS"}
+      ]
+    },
+    {
+      "number": "TASK-002",
+      "issueKey": "SCRUM-435",
+      "task": "Aplicar mapeamento de hiddenToolbarItems para flags do QuillSimpleToolbarConfig",
+      "startedAt": "2026-07-09T13:40:32-03:00",
+      "finishedAt": "2026-07-09T13:51:51-03:00",
+      "status": "COMPLETED",
+      "observation": "Mapeamento aplicado em lib/src/widgets/paki_text_field.dart; const removido do QuillSimpleToolbarConfig; flutter analyze passou; alteracoes mergeadas na branch master",
+      "validations": [
+        {"command": "flutter analyze lib/src/widgets/paki_text_field.dart", "status": "PASS"},
+        {"command": "Mapeamento show* flags para 8 valores do enum", "status": "PASS"},
+        {"command": "Idempotencia via Set", "status": "PASS"},
+        {"command": "showToolbar guarda principal preservada", "status": "PASS"}
+      ]
+    },
+    {
+      "number": "TASK-003",
+      "issueKey": "SCRUM-436",
+      "task": "Adicionar story interativo com custom property de multipla selecao",
+      "startedAt": "2026-07-09T13:40:36-03:00",
+      "finishedAt": "2026-07-09T13:57:33-03:00",
+      "status": "COMPLETED",
+      "observation": "Story _HiddenToolbarItemsProperty adicionado em example/main_dashbook.dart; custom property de multipla selecao funcional; flutter analyze passou; alteracoes mergeadas na branch master",
+      "validations": [
+        {"command": "flutter analyze example/main_dashbook.dart lib/src/widgets/paki_text_field.dart", "status": "PASS"},
+        {"command": "Custom property renderiza checkboxes para 8 valores do enum", "status": "PASS"},
+        {"command": "PakiTextField do story recebe hiddenToolbarItems", "status": "PASS"},
+        {"command": "String example reflete hiddenToolbarItems", "status": "PASS"}
+      ]
+    },
+    {
+      "number": "TASK-004",
+      "issueKey": "SCRUM-437",
+      "task": "Executar dart format flutter analyze e flutter test",
+      "startedAt": "2026-07-09T13:40:40-03:00",
+      "finishedAt": "2026-07-09T14:07:51-03:00",
+      "status": "COMPLETED",
+      "observation": "dart format . passou (0 pendentes); flutter analyze retornou 65 info preexistentes sem erros/warnings novos; flutter test passou com test/placeholder_test.dart; alteracoes mergeadas na branch master",
+      "validations": [
+        {"command": "dart format .", "status": "PASS"},
+        {"command": "flutter analyze --no-pub", "status": "PASS"},
+        {"command": "flutter test", "status": "PASS"},
+        {"command": "Nenhum erro/warning novo introduzido", "status": "PASS"}
+      ]
+    },
+    {
+      "number": "QA",
+      "issueKey": "SCRUM-430",
+      "task": "QA Review",
+      "startedAt": "2026-07-09T14:08:20-03:00",
+      "finishedAt": "2026-07-09T14:13:03-03:00",
+      "status": "COMPLETED",
+      "observation": "QA PASS: FR-001 a FR-007 e AC-001 a AC-007 atendidos; nenhuma regressao nos arquivos alterados por SCRUM-430",
+      "validations": [
+        {"command": "dart format . --set-exit-if-changed", "status": "PASS"},
+        {"command": "flutter analyze --no-pub", "status": "PASS"},
+        {"command": "flutter test", "status": "PASS"},
+        {"command": "Revisao spec.md vs implementacao", "status": "PASS"}
+      ]
+    }
+  ]
+}

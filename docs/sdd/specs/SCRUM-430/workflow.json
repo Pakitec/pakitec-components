@@ -1,0 +1,224 @@
+{
+  "schemaVersion": 2,
+  "issueKey": "SCRUM-430",
+  "runId": "eb939f34-ee80-4007-91dc-110a13c13454",
+  "planRevision": 1,
+  "workspacePath": "/Volumes/External HD/Projetos/pakitec/pakitec-components",
+  "phase": "BUILD_COMPLETED",
+  "lastStablePhase": "BUILD_COMPLETED",
+  "buildStartedAt": "2026-07-09T13:44:28.546316-03:00",
+  "buildFinishedAt": "2026-07-09T14:13:03-03:00",
+  "jira": {
+    "profileId": "pakitec",
+    "projectKey": "SCRUM"
+  },
+  "refinement": {
+    "verdict": "PASS",
+    "issueHash": "f49f3d3875760404c9d4a8ed3fcdb37483b40c046801736e20a9f65be59bbd52",
+    "checkedAt": "2026-07-09T16:21:01-03:00",
+    "warnings": [
+      "Ausência de seção 'Fora de escopo' formal — premissa registrada: não alterar botões do editor, não adicionar novos botões, não modificar showToolbar/isEnabled, não alterar versão do flutter_quill.",
+      "Ausência de premissas/riscos formais no Jira — serão registrados em spec.md e plan.md."
+    ]
+  },
+  "hashes": {
+    "issue": "f49f3d3875760404c9d4a8ed3fcdb37483b40c046801736e20a9f65be59bbd52",
+    "assetsManifest": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "spec": "a5c4882065e8ec55658e5d630eb1ec183e0d34cf6850cdb93eeba6ba6ea6b3ba",
+    "checklist": "194e3da6ab861506e08a3bc9d55ffa9f8d98b451e622a7dce1dfb586257262f2",
+    "research": "b468791751ba0194791ed108574d375c2c6ea44c0c4655c0623a195551f0e5f3",
+    "plan": "2b379c84b3ce9542f9275d0a7edd38ffd4958df40e9371ad0e3858385aa9dc8c",
+    "tasks": "ff811d06136b3c3af9e616926f5b037aa1f0b9cd3e6df19a19df6f87f63484df"
+  },
+  "subtasks": {
+    "SCRUM-431": {
+      "summary": "[SDD][SPEC] Specification",
+      "status": "Concluído",
+      "startedAt": "2026-07-09T13:26:03-03:00",
+      "finishedAt": "2026-07-09T13:29:28-03:00",
+      "observation": "spec.md, checklist.md e issue.md escritos; sem NEEDS CLARIFICATION; checklist aprovado"
+    },
+    "SCRUM-432": {
+      "summary": "[SDD][RESEARCH] Technical Research",
+      "status": "Concluído",
+      "startedAt": "2026-07-09T13:29:28-03:00",
+      "finishedAt": "2026-07-09T13:34:19-03:00",
+      "observation": "research.md escrito; mapeamento enum->flags confirmado; sem lacunas técnicas"
+    },
+    "SCRUM-433": {
+      "summary": "[SDD][PLAN] Technical Plan",
+      "status": "Concluído",
+      "startedAt": "2026-07-09T13:33:45-03:00",
+      "finishedAt": "2026-07-09T13:37:35-03:00",
+      "observation": "plan.md e tasks.md escritos; 4 tarefas executáveis definidas"
+    },
+    "SCRUM-434": {
+      "summary": "[SDD][TASK-001] Declarar enum PakiTextFieldToolbarItem e propriedade hiddenToolbarItems",
+      "status": "Concluído",
+      "startedAt": "2026-07-09T13:40:17-03:00",
+      "finishedAt": "2026-07-09T13:48:20-03:00",
+      "observation": "Enum e propriedade declarados em lib/src/widgets/paki_text_field.dart; flutter analyze passou; alteracoes mergeadas na branch master"
+    },
+    "SCRUM-435": {
+      "summary": "[SDD][TASK-002] Aplicar mapeamento de hiddenToolbarItems para flags do QuillSimpleToolbarConfig",
+      "status": "Concluído",
+      "startedAt": "2026-07-09T13:40:32-03:00",
+      "finishedAt": "2026-07-09T13:51:51-03:00",
+      "observation": "Mapeamento aplicado em lib/src/widgets/paki_text_field.dart; const removido do QuillSimpleToolbarConfig; flutter analyze passou; alteracoes mergeadas na branch master"
+    },
+    "SCRUM-436": {
+      "summary": "[SDD][TASK-003] Adicionar story interativo com custom property de multipla selecao",
+      "status": "Concluído",
+      "startedAt": "2026-07-09T13:40:36-03:00",
+      "finishedAt": "2026-07-09T13:57:33-03:00",
+      "observation": "Story _HiddenToolbarItemsProperty adicionado em example/main_dashbook.dart; custom property de multipla selecao funcional; flutter analyze passou; alteracoes mergeadas na branch master"
+    },
+    "SCRUM-437": {
+      "summary": "[SDD][TASK-004] Executar dart format flutter analyze e flutter test",
+      "status": "Concluído",
+      "startedAt": "2026-07-09T13:40:40-03:00",
+      "finishedAt": "2026-07-09T14:07:51-03:00",
+      "observation": "dart format . passou (0 pendentes); flutter analyze retornou 65 info preexistentes sem erros/warnings novos; flutter test passou com placeholder_test.dart; alteracoes mergeadas na branch master"
+    }
+  },
+  "qa": {
+    "status": "PASS",
+    "startedAt": "2026-07-09T14:08:20-03:00",
+    "finishedAt": "2026-07-09T14:13:03-03:00",
+    "observation": "QA PASS: FR-001 a FR-007 e AC-001 a AC-007 atendidos; dart format, flutter analyze e flutter test passaram; nenhuma regressao nos arquivos alterados por SCRUM-430"
+  },
+  "attempts": {},
+  "eventLedger": {
+    "SCRUM-430/plan/f49f3d387576/started": {
+      "issueKey": "SCRUM-430",
+      "eventType": "PLAN_STARTED",
+      "commentId": "11744",
+      "recordedAt": "2026-07-09T16:21:01-03:00"
+    },
+    "SCRUM-431/spec/f49f3d387576/started": {
+      "issueKey": "SCRUM-431",
+      "eventType": "TASK_STARTED",
+      "commentId": "11746",
+      "recordedAt": "2026-07-09T13:26:44-03:00"
+    },
+    "SCRUM-431/spec/f49f3d387576/completed": {
+      "issueKey": "SCRUM-431",
+      "eventType": "TASK_COMPLETED",
+      "commentId": "11747",
+      "recordedAt": "2026-07-09T13:30:00-03:00"
+    },
+    "SCRUM-432/research/f49f3d387576/started": {
+      "issueKey": "SCRUM-432",
+      "eventType": "TASK_STARTED",
+      "commentId": "11748",
+      "recordedAt": "2026-07-09T13:30:03-03:00"
+    },
+    "SCRUM-432/research/f49f3d387576/completed": {
+      "issueKey": "SCRUM-432",
+      "eventType": "TASK_COMPLETED",
+      "commentId": "11749",
+      "recordedAt": "2026-07-09T13:34:19-03:00"
+    },
+    "SCRUM-433/plan/f49f3d387576/started": {
+      "issueKey": "SCRUM-433",
+      "eventType": "TASK_STARTED",
+      "commentId": "11750",
+      "recordedAt": "2026-07-09T13:34:23-03:00"
+    },
+    "SCRUM-433/plan/f49f3d387576/completed": {
+      "issueKey": "SCRUM-433",
+      "eventType": "TASK_COMPLETED",
+      "commentId": "11751",
+      "recordedAt": "2026-07-09T13:38:07-03:00"
+    },
+    "SCRUM-434/TASK-001/f49f3d387576/started": {
+      "issueKey": "SCRUM-434",
+      "eventType": "TASK_STARTED",
+      "commentId": "11752",
+      "recordedAt": "2026-07-09T13:40:17-03:00"
+    },
+    "SCRUM-434/TASK-001/f49f3d387576/completed": {
+      "issueKey": "SCRUM-434",
+      "eventType": "TASK_COMPLETED",
+      "commentId": "11759",
+      "recordedAt": "2026-07-09T13:48:29-03:00"
+    },
+    "SCRUM-435/TASK-002/f49f3d387576/started": {
+      "issueKey": "SCRUM-435",
+      "eventType": "TASK_STARTED",
+      "commentId": "11753",
+      "recordedAt": "2026-07-09T13:40:32-03:00"
+    },
+    "SCRUM-435/TASK-002/f49f3d387576/completed": {
+      "issueKey": "SCRUM-435",
+      "eventType": "TASK_COMPLETED",
+      "commentId": "11760",
+      "recordedAt": "2026-07-09T13:52:02-03:00"
+    },
+    "SCRUM-436/TASK-003/f49f3d387576/started": {
+      "issueKey": "SCRUM-436",
+      "eventType": "TASK_STARTED",
+      "commentId": "11754",
+      "recordedAt": "2026-07-09T13:40:36-03:00"
+    },
+    "SCRUM-436/TASK-003/f49f3d387576/completed": {
+      "issueKey": "SCRUM-436",
+      "eventType": "TASK_COMPLETED",
+      "commentId": "11761",
+      "recordedAt": "2026-07-09T13:57:46-03:00"
+    },
+    "SCRUM-437/TASK-004/f49f3d387576/started": {
+      "issueKey": "SCRUM-437",
+      "eventType": "TASK_STARTED",
+      "commentId": "11755",
+      "recordedAt": "2026-07-09T13:40:40-03:00"
+    },
+    "SCRUM-437/TASK-004/f49f3d387576/completed": {
+      "issueKey": "SCRUM-437",
+      "eventType": "TASK_COMPLETED",
+      "commentId": "11762",
+      "recordedAt": "2026-07-09T14:07:59-03:00"
+    },
+    "SCRUM-430/qa/f49f3d387576/started": {
+      "issueKey": "SCRUM-430",
+      "eventType": "QA_STARTED",
+      "commentId": "11763",
+      "recordedAt": "2026-07-09T14:08:28-03:00"
+    },
+    "SCRUM-430/qa/f49f3d387576/passed": {
+      "issueKey": "SCRUM-430",
+      "eventType": "QA_PASSED",
+      "commentId": "11764",
+      "recordedAt": "2026-07-09T14:13:12-03:00"
+    },
+    "SCRUM-430/build/f49f3d387576/completed": {
+      "issueKey": "SCRUM-430",
+      "eventType": "BUILD_COMPLETED",
+      "commentId": "11765",
+      "recordedAt": "2026-07-09T14:14:13-03:00"
+    },
+    "SCRUM-430/phase/f49f3d387576/ready_to_build": {
+      "issueKey": "SCRUM-430",
+      "eventType": "PHASE_STARTED",
+      "commentId": "11756",
+      "recordedAt": "2026-07-09T13:43:14-03:00"
+    },
+    "SCRUM-430/build/f49f3d387576/started": {
+      "issueKey": "SCRUM-430",
+      "eventType": "PHASE_STARTED",
+      "commentId": "11758",
+      "recordedAt": "2026-07-09T13:45:54-03:00"
+    }
+  },
+  "pendingJiraEvents": [],
+  "blockers": [],
+  "validations": [
+    "[PASS] JIRA_GATE: workspace binding SCRUM/pakitec confirmado",
+    "[PASS] REFINEMENT_GATE: hash f49f3d3875760404c9d4a8ed3fcdb37483b40c046801736e20a9f65be59bbd52 corresponde ao workflow",
+    "[PASS] SPEC_SCRUM-431: spec.md e checklist.md sem NEEDS CLARIFICATION",
+    "[PASS] RESEARCH_SCRUM-432: research.md sem lacunas técnicas",
+    "[PASS] PLAN_SCRUM-433: plan.md e tasks.md aprovados",
+    "[PASS] JIRA_SYNC: subtarefas SCRUM-434, SCRUM-435, SCRUM-436, SCRUM-437 confirmadas como filhas de SCRUM-430 no projeto SCRUM"
+  ],
+  "updatedAt": "2026-07-09T14:14:13-03:00"
+}

@@ -6,6 +6,12 @@ class PakiEditListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(margin: const EdgeInsets.all(10.0), child: ListView(padding: const EdgeInsets.only(top: 10.0), children: children));
+    return Container(
+      margin: const EdgeInsets.all(10.0),
+      child: ListView(
+        padding: const EdgeInsets.only(top: 10.0),
+        children: children,
+      ),
+    );
   }
 }

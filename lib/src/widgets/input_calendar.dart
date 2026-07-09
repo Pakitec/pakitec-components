@@ -16,19 +16,19 @@ class PakiInputCalendar extends StatefulWidget {
   final DatePickerEntryMode? datePickerEntryMode;
   final Function(DateTime? value) onChanged;
 
-  const PakiInputCalendar(
-      {Key? key,
-      required this.name,
-      required this.controller,
-      this.willValidate,
-      this.isEnabled,
-      this.formatCalendar,
-      this.isDate,
-      this.prefixIcon,
-      this.prefixWidget,
-      this.datePickerEntryMode,
-      required this.onChanged})
-      : super(key: key);
+  const PakiInputCalendar({
+    Key? key,
+    required this.name,
+    required this.controller,
+    this.willValidate,
+    this.isEnabled,
+    this.formatCalendar,
+    this.isDate,
+    this.prefixIcon,
+    this.prefixWidget,
+    this.datePickerEntryMode,
+    required this.onChanged,
+  }) : super(key: key);
 
   @override
   State<PakiInputCalendar> createState() => _PakiInputCalendarState();
@@ -56,8 +56,9 @@ class _PakiInputCalendarState extends State<PakiInputCalendar> {
   @override
   Widget build(BuildContext context) {
     final format = DateFormat(formatCalendar);
-    return Column(children: <Widget>[
-      DateTimeField(
+    return Column(
+      children: <Widget>[
+        DateTimeField(
           format: format,
           controller: widget.controller,
           enabled: isEnabled,
@@ -65,10 +66,14 @@ class _PakiInputCalendarState extends State<PakiInputCalendar> {
           style: const TextStyle(color: pakiDefaultPrimaryColor),
           onChanged: widget.onChanged,
           decoration: InputDecoration(
-              labelText: widget.name,
-              prefixIcon: widget.prefixWidget ??
-                  (widget.prefixIcon != null ? Icon(widget.prefixIcon, color: Colors.white70) : null),
-              suffixIcon: const Icon(Icons.calendar_month)),
+            labelText: widget.name,
+            prefixIcon:
+                widget.prefixWidget ??
+                (widget.prefixIcon != null
+                    ? Icon(widget.prefixIcon, color: Colors.white70)
+                    : null),
+            suffixIcon: const Icon(Icons.calendar_month),
+          ),
           onShowPicker: (context, dynamic currentValue) async {
             TimeOfDay? dTime;
             DateTime? dDate;
@@ -76,7 +81,8 @@ class _PakiInputCalendarState extends State<PakiInputCalendar> {
             if (isDate) {
               dDate = await showDatePicker(
                 context: context,
-                initialEntryMode: widget.datePickerEntryMode ?? DatePickerEntryMode.calendar,
+                initialEntryMode:
+                    widget.datePickerEntryMode ?? DatePickerEntryMode.calendar,
                 firstDate: DateTime(1900),
                 initialDate: currentValue ?? DateTime.now(),
                 lastDate: DateTime(2100),
@@ -92,8 +98,10 @@ class _PakiInputCalendarState extends State<PakiInputCalendar> {
 
               return DateTimeField.convert(dTime); // também pode ser null
             }
-          }),
-      const PakiHorizontalDiv()
-    ]);
+          },
+        ),
+        const PakiHorizontalDiv(),
+      ],
+    );
   }
 }

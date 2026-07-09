@@ -34,6 +34,87 @@ class IconChoice {
   String toString() => name;
 }
 
+class _HiddenToolbarItemsProperty extends StatefulWidget {
+  final Property<List<PakiTextFieldToolbarItem>> property;
+  final PropertyChanged onChanged;
+
+  const _HiddenToolbarItemsProperty({
+    required this.property,
+    required this.onChanged,
+    super.key,
+  });
+
+  @override
+  State<_HiddenToolbarItemsProperty> createState() =>
+      _HiddenToolbarItemsPropertyState();
+}
+
+class _HiddenToolbarItemsPropertyState
+    extends State<_HiddenToolbarItemsProperty> {
+  late final Set<PakiTextFieldToolbarItem> _selected;
+
+  @override
+  void initState() {
+    super.initState();
+    _selected = widget.property.getValue().toSet();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return PropertyScaffold(
+      label: widget.property.name,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          for (final item in PakiTextFieldToolbarItem.values)
+            Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Checkbox(
+                  value: _selected.contains(item),
+                  onChanged: (checked) {
+                    setState(() {
+                      if (checked ?? false) {
+                        _selected.add(item);
+                      } else {
+                        _selected.remove(item);
+                      }
+                    });
+                    widget.property.value = _selected.toList();
+                    widget.onChanged();
+                  },
+                ),
+                Flexible(child: Text(_labelFor(item))),
+              ],
+            ),
+        ],
+      ),
+    );
+  }
+
+  String _labelFor(PakiTextFieldToolbarItem item) {
+    switch (item) {
+      case PakiTextFieldToolbarItem.undo:
+        return 'Desfazer';
+      case PakiTextFieldToolbarItem.redo:
+        return 'Refazer';
+      case PakiTextFieldToolbarItem.bold:
+        return 'Negrito';
+      case PakiTextFieldToolbarItem.italic:
+        return 'Itálico';
+      case PakiTextFieldToolbarItem.underline:
+        return 'Sublinhado';
+      case PakiTextFieldToolbarItem.strike:
+        return 'Tachado';
+      case PakiTextFieldToolbarItem.orderedList:
+        return 'Lista numerada';
+      case PakiTextFieldToolbarItem.bulletList:
+        return 'Lista com marcadores';
+    }
+  }
+}
+
 void _noop() {}
 
 void main() {
@@ -464,13 +545,36 @@ void main() {
   dashbook.storiesOf('PakiTextField').add('Example', (ctx) {
     final controller = QuillController.basic();
     final hint = ctx.textProperty('Hint', 'Digite o conteúdo detalhado');
-    final example =
-        '''
+    final hiddenToolbarItems = ctx.addProperty(
+      Property<List<PakiTextFieldToolbarItem>>.withBuilder(
+        'Itens ocultos da toolbar',
+        const <PakiTextFieldToolbarItem>[],
+        builder: (property, onChanged, key) => _HiddenToolbarItemsProperty(
+          property: property,
+          onChanged: onChanged,
+          key: key,
+        ),
+      ),
+    );
+    final hiddenToolbarItemsString = hiddenToolbarItems.isEmpty
+        ? ''
+        : 'hiddenToolbarItems: [${hiddenToolbarItems.map((item) => 'PakiTextFieldToolbarItem.${item.name}').join(', ')}]';
+    final example = hiddenToolbarItems.isEmpty
+        ? '''
         PakiTextField(
           name: 'Descrição longa',
           controller: QuillController.basic(),
           hint: '$hint',
           onPlainTextChanged: (value) {},
+        )
+        '''
+        : '''
+        PakiTextField(
+          name: 'Descrição longa',
+          controller: QuillController.basic(),
+          hint: '$hint',
+          onPlainTextChanged: (value) {},
+          $hiddenToolbarItemsString,
         )
         ''';
 
@@ -481,6 +585,7 @@ void main() {
         controller: controller,
         hint: hint,
         onPlainTextChanged: (value) {},
+        hiddenToolbarItems: hiddenToolbarItems,
       ),
     );
   });

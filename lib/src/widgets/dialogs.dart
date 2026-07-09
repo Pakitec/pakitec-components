@@ -21,30 +21,45 @@ void pakiShowQuestionYesNo({
     showDialog(
       context: context,
       builder: (BuildContext context) {
-        return StatefulBuilder( // Permite que o diálogo atualize o estado
+        return StatefulBuilder(
+          // Permite que o diálogo atualize o estado
           builder: (context, setState) {
             // Botões que mudam dependendo do estado de isLoading
 
             Widget yes = isLoading!
                 ? const Center(child: CircularProgressIndicator())
                 : TextButton(
-              style: ButtonStyle(backgroundColor: MaterialStateProperty.all(pakiDefaultButtonColor)),
-              onPressed: () {
-                setState(() {
-                  isLoading = true; // Exibe o loading
-                });
-                onConfirm();
-              },
-              child: const Text('Sim', style: TextStyle(color: Colors.white)),
-            );
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all(
+                        pakiDefaultButtonColor,
+                      ),
+                    ),
+                    onPressed: () {
+                      setState(() {
+                        isLoading = true; // Exibe o loading
+                      });
+                      onConfirm();
+                    },
+                    child: const Text(
+                      'Sim',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  );
 
             Widget no = isLoading!
                 ? const Center(child: CircularProgressIndicator())
                 : TextButton(
-              style: ButtonStyle(backgroundColor: MaterialStateProperty.all(pakiDefaultButtonColor)),
-              onPressed: onCancel,
-              child: const Text('Não', style: TextStyle(color: Colors.white)),
-            );
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all(
+                        pakiDefaultButtonColor,
+                      ),
+                    ),
+                    onPressed: onCancel,
+                    child: const Text(
+                      'Não',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  );
 
             return AlertDialog(
               title: const Column(
@@ -63,7 +78,12 @@ void pakiShowQuestionYesNo({
                 ],
               ),
               content: Text(message),
-              actions: [Row(mainAxisAlignment: MainAxisAlignment.end,  children: [yes, const PakiVerticalDiv() , no])],
+              actions: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [yes, const PakiVerticalDiv(), no],
+                ),
+              ],
               backgroundColor: pakiDefaultSecondaryColor,
             );
           },
@@ -73,30 +93,51 @@ void pakiShowQuestionYesNo({
   }
 }
 
-pakiShowSnackBar(
-    {required BuildContext context, required Widget content, required Color color, SnackBarAction? action}) {
+pakiShowSnackBar({
+  required BuildContext context,
+  required Widget content,
+  required Color color,
+  SnackBarAction? action,
+}) {
   if (!context.mounted) return;
   ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: content, backgroundColor: color, duration: const Duration(seconds: 5), action: action));
+    SnackBar(
+      content: content,
+      backgroundColor: color,
+      duration: const Duration(seconds: 5),
+      action: action,
+    ),
+  );
 }
 
-pakiShowSnackBarErrors(
-    {required BuildContext context, required String content, SnackBarAction? action, String? urlImage}) {
+pakiShowSnackBarErrors({
+  required BuildContext context,
+  required String content,
+  SnackBarAction? action,
+  String? urlImage,
+}) {
   if (!context.mounted) return;
-  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-      content: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-        SizedBox(
+  ScaffoldMessenger.of(context).showSnackBar(
+    SnackBar(
+      content: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          SizedBox(
             width: MediaQuery.of(context).size.width * 70 / 100,
-            child: Text(
-              content,
-              style: const TextStyle(color: Colors.white),
-            )),
-        Image.asset(urlImage ?? 'assets/images/bermuda_error.png',
-            height: 60, width: MediaQuery.of(context).size.width * 15 / 100)
-      ]),
+            child: Text(content, style: const TextStyle(color: Colors.white)),
+          ),
+          Image.asset(
+            urlImage ?? 'assets/images/bermuda_error.png',
+            height: 60,
+            width: MediaQuery.of(context).size.width * 15 / 100,
+          ),
+        ],
+      ),
       backgroundColor: Colors.red,
       duration: const Duration(seconds: 5),
-      action: action));
+      action: action,
+    ),
+  );
 }
 
 void pakiShowGlobalModal({
@@ -135,9 +176,7 @@ void pakiShowGlobalModal({
 
       return AlertDialog(
         backgroundColor: color.withOpacity(0.9),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(16),
-        ),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
         contentPadding: const EdgeInsets.all(24),
         content: Column(
           mainAxisSize: MainAxisSize.min,
@@ -147,11 +186,7 @@ void pakiShowGlobalModal({
               child: CircleAvatar(
                 backgroundColor: Colors.white.withOpacity(0.2),
                 radius: 30,
-                child: Icon(
-                  iconData,
-                  size: 32,
-                  color: Colors.white,
-                ),
+                child: Icon(iconData, size: 32, color: Colors.white),
               ),
             ),
             const SizedBox(height: 16),
@@ -168,17 +203,17 @@ void pakiShowGlobalModal({
             Text(
               message,
               textAlign: TextAlign.center,
-              style: const TextStyle(
-                fontSize: 16,
-                color: Colors.white,
-              ),
+              style: const TextStyle(fontSize: 16, color: Colors.white),
             ),
             const SizedBox(height: 24),
             TextButton(
               style: TextButton.styleFrom(
                 foregroundColor: Colors.white,
                 backgroundColor: Colors.black.withOpacity(0.3),
-                padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 24,
+                  vertical: 12,
+                ),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8),
                 ),
@@ -191,9 +226,7 @@ void pakiShowGlobalModal({
               },
               child: const Text(
                 'OK',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                ),
+                style: TextStyle(fontWeight: FontWeight.bold),
               ),
             ),
             const SizedBox(height: 16),

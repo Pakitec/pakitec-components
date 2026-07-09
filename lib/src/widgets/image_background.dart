@@ -6,8 +6,8 @@ class PakiImageBackground extends StatelessWidget {
   final String? url;
   final String? text;
 
-  const PakiImageBackground({Key? key, this.url = '', this.text = ''}) : super(key: key);
-
+  const PakiImageBackground({Key? key, this.url = '', this.text = ''})
+    : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,9 +19,17 @@ class PakiImageBackground extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        url!.isNotEmpty ? imageBackground(url) : imageBackground('assets/images/bermuda-no-data.png'),
+        url!.isNotEmpty
+            ? imageBackground(url)
+            : imageBackground('assets/images/bermuda-no-data.png'),
         const PakiHorizontalDiv(),
-        Text(text!.isNotEmpty ? text! : 'sem dados', style: const TextStyle(color: pakiDefaultPrimaryColor, fontSize: 18.0))
+        Text(
+          text!.isNotEmpty ? text! : 'sem dados',
+          style: const TextStyle(
+            color: pakiDefaultPrimaryColor,
+            fontSize: 18.0,
+          ),
+        ),
       ],
     );
   }

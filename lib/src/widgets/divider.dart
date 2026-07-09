@@ -14,7 +14,9 @@ class _PakiHorizontalDivState extends State<PakiHorizontalDiv> {
   @override
   void initState() {
     super.initState();
-    if (widget.height != null) {height = widget.height!;}
+    if (widget.height != null) {
+      height = widget.height!;
+    }
   }
 
   @override
@@ -37,7 +39,9 @@ class _PakiVerticalDivState extends State<PakiVerticalDiv> {
   @override
   void initState() {
     super.initState();
-    if (widget.width != null) {width = widget.width!;}
+    if (widget.width != null) {
+      width = widget.width!;
+    }
   }
 
   @override
