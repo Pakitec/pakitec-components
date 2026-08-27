@@ -1,6 +1,6 @@
 name: pakitec_components
-description: components from pakitec devs
-version: 1.0.53
+description: Deprecated legacy components from Pakitec. Use pakitec_flutter_components for new projects.
+version: 1.0.54
 homepage: 'www.pakitec.com.br'
 publish_to: none
 

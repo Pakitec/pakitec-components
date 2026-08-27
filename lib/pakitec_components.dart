@@ -1,3 +1,7 @@
+@Deprecated(
+  'Use package:pakitec_flutter_components/pakitec_flutter_components.dart '
+  'for new projects. Existing projects may continue using this legacy package.',
+)
 library pakitec_components;
 
 export 'src/widgets/divider.dart';

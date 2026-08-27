@@ -1,6 +1,13 @@
 
 # Pakitec Components
 
+> [!WARNING]
+> **Pacote descontinuado para novos projetos.** Este pacote permanece disponível
+> para manter os projetos atuais, mas não deve ser adotado por novas aplicações.
+> Use [`pakitec_flutter_components`](https://github.com/Pakitec/pakitec-flutter-components)
+> com os temas Nimbus do
+> [`pakitec_themes`](https://github.com/Pakitec/pakitec-themes).
+
 Pacote de componentes visuais reutilizáveis criado pela equipe da Pakitec, com foco em produtividade, consistência visual e facilidade de integração em projetos Flutter.
 
 > 💡 Este pacote é privado e não está publicado no pub.dev. Para uso interno e por times autorizados.
@@ -17,6 +24,9 @@ Pacote de componentes visuais reutilizáveis criado pela equipe da Pakitec, com 
 ---
 
 ## 🚀 Começando
+
+> As instruções abaixo existem somente para manutenção de aplicações
+> legadas. Projetos novos devem instalar `pakitec_flutter_components`.
 
 ### Pré-requisitos
 
